@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>กฎหมายใกล้ตัว</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff6ec7; --purple:#a06bff; --blue:#4ea8ff; --cyan:#37e0d8;
+    --green:#5bd75b; --yellow:#ffd34e; --orange:#ff9d42; --red:#ff6b6b;
+    --ink:#34306b; --soft:#fff;
+    --shadow:0 10px 30px rgba(80,60,160,.18);
+    --shadow-sm:0 4px 14px rgba(80,60,160,.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Kanit','Sarabun',sans-serif;
+    color:var(--ink);
+    background:linear-gradient(135deg,#ffe1f4 0%,#e3ecff 45%,#dffaf6 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* floating bubbles bg */
+  .bubbles{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none}
+  .bubbles span{position:absolute; bottom:-80px; border-radius:50%; opacity:.35;
+    animation:rise linear infinite}
+  @keyframes rise{to{transform:translateY(-115vh) rotate(360deg)}}
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:18px 16px 60px}
+
+  /* ---- Header ---- */
+  header{text-align:center; padding:14px 0 6px}
+  .title{
+    font-weight:800; font-size:clamp(26px,6vw,46px); line-height:1.05;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue),var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 3px 0 rgba(255,255,255,.6));
+  }
+  .subtitle{font-size:15px; color:#6a64a6; margin-top:4px; font-weight:500}
+  .mascot{font-size:clamp(48px,11vw,74px); display:inline-block; animation:bob 2.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+
+  /* ---- Star bar ---- */
+  .starbar{display:flex; align-items:center; justify-content:center; gap:8px; margin:10px auto 0;
+    background:#fff; border-radius:50px; padding:8px 18px; box-shadow:var(--shadow-sm); width:max-content; font-weight:600}
+  .starbar b{color:var(--orange); font-size:20px}
+
+  /* ---- Home menu cards ---- */
+  .menu{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-top:22px}
+  .card{
+    border:none; cursor:pointer; border-radius:24px; padding:22px 16px; text-align:center;
+    color:#fff; font-family:inherit; font-weight:700; font-size:17px; position:relative;
+    box-shadow:var(--shadow); transition:transform .15s, box-shadow .15s; overflow:hidden;
+  }
+  .card:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 16px 36px rgba(80,60,160,.28)}
+  .card:active{transform:scale(.97)}
+  .card .ico{font-size:42px; display:block; margin-bottom:8px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.15))}
+  .card small{display:block; font-weight:500; font-size:12.5px; opacity:.92; margin-top:4px}
+  .c1{background:linear-gradient(140deg,#ff8fd4,#ff5fb0)}
+  .c2{background:linear-gradient(140deg,#9b8bff,#7a5cff)}
+  .c3{background:linear-gradient(140deg,#5fb8ff,#3d86ff)}
+  .c4{background:linear-gradient(140deg,#42e0c8,#1bc2b0)}
+  .c5{background:linear-gradient(140deg,#ffc04e,#ff9326)}
+  .c6{background:linear-gradient(140deg,#76dd6e,#39c14a)}
+
+  /* ---- Screens ---- */
+  .screen{display:none; animation:pop .35s ease}
+  .screen.active{display:block}
+  @keyframes pop{from{opacity:0; transform:translateY(18px) scale(.98)}to{opacity:1; transform:none}}
+  .panel{background:#fff; border-radius:26px; padding:24px 22px; box-shadow:var(--shadow); margin-top:18px}
+  .panel h2{font-size:clamp(20px,4.5vw,28px); display:flex; align-items:center; gap:10px; margin-bottom:6px}
+  .panel .lead{color:#6a64a6; font-size:15px; line-height:1.6; margin-bottom:16px}
+
+  .backbtn{border:none; cursor:pointer; font-family:inherit; font-weight:700; font-size:15px;
+    background:#fff; color:var(--purple); border-radius:50px; padding:10px 20px; box-shadow:var(--shadow-sm);
+    display:inline-flex; align-items:center; gap:7px; transition:transform .12s}
+  .backbtn:hover{transform:translateX(-4px)}
+
+  /* ---- 100 grid ---- */
+  .grid100{display:grid; grid-template-columns:repeat(10,1fr); gap:4px; max-width:340px; margin:14px auto;
+    background:#f0eefc; padding:10px; border-radius:18px}
+  .cell{aspect-ratio:1; background:#fff; border-radius:6px; cursor:pointer; transition:.12s; box-shadow:inset 0 0 0 1px #e6e2fb}
+  .cell.on{background:linear-gradient(140deg,var(--pink),var(--purple)); box-shadow:none; transform:scale(1.04)}
+  .bigpct{text-align:center; font-size:clamp(38px,9vw,64px); font-weight:800;
+    background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; background-clip:text; color:transparent; margin:6px 0}
+  .hint{text-align:center; color:#6a64a6; font-size:14px; margin-top:6px}
+
+  /* ---- Sliders & inputs ---- */
+  .row{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:center; margin:14px 0}
+  input[type=range]{-webkit-appearance:none; appearance:none; width:min(320px,80%); height:14px; border-radius:50px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple)); outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:30px; height:30px; border-radius:50%;
+    background:#fff; border:4px solid var(--purple); cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.2)}
+  input[type=range]::-moz-range-thumb{width:30px; height:30px; border-radius:50%; background:#fff; border:4px solid var(--purple); cursor:pointer}
+  .field{display:flex; flex-direction:column; gap:4px; align-items:center}
+  .field label{font-weight:600; font-size:14px; color:#6a64a6}
+  .num{width:130px; font-family:inherit; font-weight:700; font-size:22px; text-align:center; color:var(--ink);
+    border:3px solid #e6e2fb; border-radius:16px; padding:10px; outline:none; transition:.15s; background:#faf9ff}
+  .num:focus{border-color:var(--purple); background:#fff}
+
+  /* ---- Convert visual ---- */
+  .conv{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; text-align:center; margin-top:8px}
+  .conv .box{background:#faf9ff; border-radius:18px; padding:16px 10px; border:3px solid #eee9fc}
+  .conv .box .t{font-size:12px; color:#9a93c9; font-weight:600}
+  .conv .box .v{font-size:clamp(20px,5vw,30px); font-weight:800; margin-top:4px}
+  .conv .b1 .v{color:var(--pink)} .conv .b2 .v{color:var(--purple)} .conv .b3 .v{color:var(--blue)}
+  svg.pie{display:block; margin:8px auto; filter:drop-shadow(0 6px 10px rgba(120,90,200,.25))}
+
+  /* ---- Steps box ---- */
+  .steps{background:linear-gradient(135deg,#fff7fc,#f2f6ff); border-radius:18px; padding:16px 18px; margin-top:14px;
+    border:2px dashed #d9cffb}
+  .steps .st{display:flex; gap:10px; align-items:flex-start; padding:7px 0; font-size:15px; line-height:1.5}
+  .steps .st b{min-width:26px; height:26px; border-radius:50%; background:var(--purple); color:#fff;
+    display:inline-grid; place-items:center; font-size:13px; flex:none}
+  .answer{text-align:center; font-size:clamp(26px,7vw,40px); font-weight:800; margin-top:10px;
+    background:linear-gradient(90deg,var(--green),var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+  /* ---- progress bar (for X% of N) ---- */
+  .bar{height:42px; background:#f0eefc; border-radius:50px; overflow:hidden; margin:14px 0; position:relative}
+  .bar .fill{height:100%; width:0; border-radius:50px; background:linear-gradient(90deg,var(--orange),var(--pink));
+    transition:width .6s cubic-bezier(.3,1.3,.5,1); display:flex; align-items:center; justify-content:flex-end;
+    padding-right:14px; color:#fff; font-weight:700}
+
+  /* ---- buttons ---- */
+  .btn{border:none; cursor:pointer; font-family:inherit; font-weight:700; font-size:16px; color:#fff;
+    border-radius:50px; padding:12px 26px; box-shadow:var(--shadow-sm); transition:transform .12s, filter .12s}
+  .btn:hover{transform:translateY(-2px); filter:brightness(1.05)} .btn:active{transform:scale(.96)}
+  .btn.go{background:linear-gradient(135deg,var(--purple),var(--blue))}
+  .btn.alt{background:linear-gradient(135deg,var(--orange),var(--pink))}
+  .center{text-align:center}
+
+  /* ---- real world tabs ---- */
+  .tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:10px}
+  .tab{border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:14px; color:var(--purple);
+    background:#f0eefc; border-radius:50px; padding:9px 18px; transition:.15s}
+  .tab.on{background:linear-gradient(135deg,var(--purple),var(--blue)); color:#fff; box-shadow:var(--shadow-sm)}
+  .tool{display:none} .tool.on{display:block; animation:pop .3s ease}
+  .result-card{background:linear-gradient(135deg,#eafff3,#e7f6ff); border-radius:18px; padding:16px; margin-top:12px; text-align:center}
+  .result-card .big{font-size:clamp(24px,6vw,38px); font-weight:800; color:var(--green)}
+  .result-card .small{font-size:14px; color:#6a8; font-weight:600}
+  .priceline{font-size:15px; color:#6a64a6; margin-top:4px}
+  .priceline del{color:#c0b8e0}
+
+  /* ---- Quiz ---- */
+  .levelpick{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:16px 0}
+  .lvl{border:none; cursor:pointer; font-family:inherit; font-weight:700; font-size:16px; color:#fff;
+    border-radius:20px; padding:18px 22px; box-shadow:var(--shadow-sm); transition:transform .14s; flex:1; min-width:120px; max-width:200px}
+  .lvl:hover{transform:translateY(-4px)} .lvl small{display:block; font-weight:500; font-size:12px; opacity:.92; margin-top:4px}
+  .lvl.e{background:linear-gradient(140deg,#76dd6e,#39c14a)}
+  .lvl.m{background:linear-gradient(140deg,#ffc04e,#ff9326)}
+  .lvl.h{background:linear-gradient(140deg,#ff8f8f,#ff5f5f)}
+
+  .qhead{display:flex; justify-content:space-between; align-items:center; font-weight:700; color:#6a64a6; margin-bottom:6px; font-size:14px}
+  .qprog{height:10px; background:#f0eefc; border-radius:50px; overflow:hidden; margin-bottom:14px}
+  .qprog i{display:block; height:100%; background:linear-gradient(90deg,var(--cyan),var(--purple)); transition:width .3s}
+  .question{font-size:clamp(20px,5vw,28px); font-weight:700; text-align:center; margin:10px 0 18px; line-height:1.4}
+  .choices{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .choice{border:3px solid #e6e2fb; background:#faf9ff; cursor:pointer; font-family:inherit; font-weight:700;
+    font-size:22px; color:var(--ink); border-radius:18px; padding:18px; transition:.12s}
+  .choice:hover{border-color:var(--purple); transform:translateY(-2px)}
+  .choice.correct{background:linear-gradient(135deg,#5bd75b,#37e0d8); color:#fff; border-color:transparent; animation:pulse .4s}
+  .choice.wrong{background:linear-gradient(135deg,#ff8f8f,#ff5f5f); color:#fff; border-color:transparent; animation:shake .4s}
+  .choice:disabled{cursor:default}
+  @keyframes pulse{50%{transform:scale(1.08)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  .feedback{text-align:center; font-size:20px; font-weight:700; margin-top:16px; min-height:30px}
+  .scorebig{text-align:center; padding:10px}
+  .scorebig .stars{font-size:54px; letter-spacing:6px}
+  .scorebig .msg{font-size:clamp(22px,5vw,30px); font-weight:800; margin:10px 0;
+    background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .scorebig .detail{color:#6a64a6; font-size:16px}
+
+  /* confetti */
+  .confetti{position:fixed; top:-10px; width:10px; height:16px; z-index:99; pointer-events:none; border-radius:2px}
+  @keyframes fall{to{transform:translateY(105vh) rotate(720deg); opacity:0}}
+
+  footer{text-align:center; color:#9a93c9; font-size:12.5px; margin-top:30px; line-height:1.7}
+
+  /* ---- (IT) locked cards ---- */
+  .card.locked{filter:grayscale(.75) brightness(1.05); opacity:.6; cursor:not-allowed}
+  .card.locked:hover{transform:none; box-shadow:var(--shadow)}
+  @media (max-width:600px){
+    .menu{grid-template-columns:1fr 1fr; gap:12px}
+    .card{padding:16px 10px; font-size:15px}
+    .card .ico{font-size:34px}
+    .panel{padding:18px 12px}
+    .layer{padding:14px 12px}
+    table.t{font-size:13px}
+    table.t th,table.t td{padding:7px 5px}
+  }
+  .card .tag{position:absolute; top:10px; right:12px; font-size:11px; background:rgba(255,255,255,.3); border-radius:50px; padding:2px 9px}
+  .c7{background:linear-gradient(140deg,#ff8f8f,#ff5f5f)}
+  .c8{background:linear-gradient(140deg,#7fd3ff,#4f8dff)}
+  /* ---- (IT) ด่านพิเศษ Office ---- */
+  .cgold{background:linear-gradient(140deg,#ffa62b,#e86a00)}
+  .special{margin-top:26px; border-radius:24px; padding:16px 14px 18px; background:linear-gradient(140deg,#fff8e0,#ffeab8); border:3px dashed #ffb400; text-align:center}
+  .special .sp-h{font-family:'Pridi',serif; font-size:21px; font-weight:700; color:#b86e00}
+  .special .sp-tag{display:inline-block; font-size:12px; font-weight:600; background:#ff5f5f; color:#fff; border-radius:50px; padding:2px 10px; margin-left:6px; vertical-align:middle}
+  .special .tip{margin:6px 0 12px}
+  .special .card{width:100%; max-width:360px; margin:0 auto}
+  .path{display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin:6px 0 4px}
+  .path span{background:#fff; border-radius:50px; padding:3px 11px; font-size:13px; font-weight:600; color:#6a64a6}
+
+  /* ---- (IT) 3 layers ---- */
+  .layer{border-radius:22px; padding:18px 18px; margin-top:16px; animation:pop .35s ease}
+  .layer h3{font-size:clamp(18px,4vw,23px); display:flex; align-items:center; gap:8px; margin-bottom:8px}
+  .layer p{font-size:16px; line-height:1.7}
+  .L1{background:linear-gradient(135deg,#eafff0,#e6fbff); border:3px solid #bdf0cc}
+  .L2{background:linear-gradient(135deg,#fffbe6,#fff0e0); border:3px solid #ffe2a8}
+  .L3{background:linear-gradient(135deg,#f3edff,#ffeaf6); border:3px solid #dccfff}
+  .more{display:block; width:100%; margin-top:14px; border:3px dashed #c9bdf5; background:#fff; cursor:pointer;
+    font-family:inherit; font-weight:700; font-size:16px; color:var(--purple); border-radius:18px; padding:14px; transition:.15s}
+  .more:hover{background:#faf7ff; transform:translateY(-2px)}
+  .hide{display:none}
+
+  /* phone ↔ computer compare cards */
+  .cmp{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:10px}
+  .cmp .it{background:#fff; border-radius:18px; padding:14px; box-shadow:var(--shadow-sm); text-align:center}
+  .cmp .it .e{font-size:40px}
+  .cmp .it b{display:block; font-size:17px; margin-top:4px}
+  .cmp .it span{display:block; font-size:14px; color:#6a64a6; margin-top:4px; line-height:1.5}
+  .cmp .it span b{display:inline; font-size:inherit; margin:0; color:var(--ink)}
+  .cmp .it span .kw{display:inline; font-size:inherit; margin:0; color:#6b3fd6; line-height:inherit}
+  .cmp .it .pill{display:inline-block; margin-top:8px; font-size:12.5px; font-weight:600; color:#fff; border-radius:50px; padding:3px 12px}
+  .p-in{background:var(--blue)} .p-pr{background:var(--pink)} .p-st{background:var(--orange)} .p-out{background:var(--green)}
+
+  /* flow IPO */
+  .flow{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; margin:12px 0}
+  .flow .f{border-radius:16px; padding:10px 14px; color:#fff; font-weight:700; text-align:center; min-width:96px}
+  .flow .f small{display:block; font-weight:500; font-size:12px}
+  .flow .ar{font-size:22px; color:#a99fe0}
+
+  /* memo / exam tip */
+  .memo{background:#fff; border-left:6px solid var(--orange); border-radius:14px; padding:12px 14px; margin-top:12px; font-size:15px; line-height:1.6}
+  .memo.ex{border-left-color:var(--red)}
+  .tw{overflow-x:auto; margin-top:10px; border-radius:14px}
+  .tw table.t{margin-top:0}
+  table.t{width:100%; border-collapse:separate; border-spacing:0; margin-top:10px; font-size:14.5px; background:#fff; border-radius:14px; overflow:hidden}
+  table.t th{background:#efe9ff; color:#5a4bb0; padding:9px 8px; text-align:left}
+  table.t td{padding:9px 8px; border-top:1px solid #f1eefc; vertical-align:top; line-height:1.5}
+
+  /* ---- (IT) level map ---- */
+  .levels{display:grid; gap:12px; margin-top:12px}
+  .lv{display:flex; align-items:center; gap:14px; border:none; cursor:pointer; font-family:inherit; text-align:left;
+    border-radius:20px; padding:14px 16px; color:#fff; box-shadow:var(--shadow-sm); transition:transform .14s}
+  .lv:hover{transform:translateY(-3px)}
+  .lv .n{font-size:38px}
+  .lv b{font-size:17px; display:block} .lv small{font-size:13px; opacity:.95}
+  .lv .st{margin-left:auto; font-size:20px; letter-spacing:2px; white-space:nowrap}
+  .lv.locked{background:#cfcbe6 !important; cursor:not-allowed} .lv.locked:hover{transform:none}
+  .hearts{font-size:18px; letter-spacing:2px}
+  .btn.fire{background:linear-gradient(135deg,#ff5f3c,#ffb020)}
+  #ch-retry{position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:50; display:none;
+    box-shadow:0 6px 18px rgba(0,0,0,.25); max-width:calc(100vw - 32px)}
+  .lv .bd{font-size:15px; margin-left:4px}
+  .choices.txt{grid-template-columns:1fr}
+  .choices.txt .choice{font-size:17px; text-align:left; padding:14px 16px; line-height:1.45}
+  .why{background:#f7f5ff; border-radius:14px; padding:12px 14px; margin-top:12px; font-size:15px; line-height:1.6; display:none}
+  .nextbtn{margin-top:12px; display:none}
+
+  /* ---- (IT) hardware tour ---- */
+  .step-h{display:flex; align-items:center; gap:8px; font-size:clamp(17px,4vw,21px); font-weight:700; margin:22px 0 4px}
+  .step-h .sn{width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--purple)); color:#fff;
+    display:inline-grid; place-items:center; font-size:15px; flex:none}
+  .tip{font-size:14.5px; color:#6a64a6; line-height:1.6; margin-bottom:8px}
+  .fig{background:#fff; border-radius:20px; padding:8px; box-shadow:var(--shadow-sm); margin-top:8px}
+  .hsvg{display:block; width:100%; max-width:440px; margin:0 auto; height:auto}
+  .hsvg .bd{cursor:pointer}
+  .hsvg .bd circle{fill:#ff6ec7; stroke:#fff; stroke-width:2.5; transition:.15s}
+  .hsvg .bd text{fill:#fff; font-size:12px; font-weight:800; text-anchor:middle; font-family:'Kanit',sans-serif; pointer-events:none}
+  .hsvg .bd:hover circle{fill:#a06bff}
+  .hsvg .bd.sel circle{fill:#ffd34e; stroke:#ff6ec7; r:12}
+  .hsvg .bd.sel text{fill:var(--ink)}
+  .hsvg .pt{cursor:pointer; transition:.15s}
+  .hsvg .pppush{animation:ppPush .7s ease-out}
+  .hsvg .ppfly{animation:ppFly .6s ease-out}
+  @keyframes ppPush{from{transform:translateX(240px)}to{transform:none}}
+  @keyframes ppFly{from{transform:translateY(26px);opacity:0}to{transform:none;opacity:1}}
+  .hsvg .pt.sel{filter:drop-shadow(0 0 4px #ffd34e) drop-shadow(0 0 7px #ff6ec7)}
+  .hsvg .bd circle{animation:beat 2.2s ease-in-out infinite}
+  @keyframes beat{50%{stroke-width:5}}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px}
+  .chip{border:2px solid #e6e2fb; background:#fff; cursor:pointer; font-family:inherit; font-size:13.5px; font-weight:600;
+    color:var(--ink); border-radius:50px; padding:5px 12px; transition:.12s}
+  .chip.sel{background:linear-gradient(135deg,var(--yellow),var(--orange)); border-color:transparent}
+  .info{background:#fff; border-radius:16px; padding:12px 14px; margin-top:10px; font-size:15.5px; line-height:1.6; min-height:52px;
+    border:3px solid #ffe2a8; text-align:center}
+  .info .deep{text-align:left; margin-top:8px; border-top:1.5px dashed #d9d2f2; padding-top:8px}
+  .info .dbtn{border:none; cursor:pointer; font-family:inherit; font-weight:700; font-size:14.5px; color:#6b3fd6;
+    background:#efe8ff; border-radius:50px; padding:6px 14px; margin-top:6px}
+  .info .d2{background:#f7f3ff; border-radius:12px; padding:8px 10px}
+  .info .d3{margin:8px 0 4px 18px; padding:0} .info .d3 li{margin:3px 0}
+  .info .dlink{display:inline-block; margin-top:4px; font-size:14px; color:#2a6fd6; word-break:break-word}
+  .kw{color:#6b3fd6; border-bottom:2px dotted #a98bf0; cursor:pointer; font-weight:700}
+  .info .gp{font-style:normal; color:#fff; font-size:12.5px; font-weight:600; border-radius:50px; padding:2px 10px; margin-left:4px; white-space:nowrap}
+  .map{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:8px}
+  .grp{border-radius:18px; padding:12px; color:#fff}
+  .grp h4{font-size:16px} .grp h4 small{font-weight:500; font-size:11.5px; opacity:.9}
+  .grp p{font-size:12.5px; opacity:.95; margin:2px 0 8px}
+  .grp .ch{display:inline-block; background:rgba(255,255,255,.92); color:var(--ink); border-radius:50px; padding:3px 10px; margin:0 4px 5px 0; font-size:13px; font-weight:600}
+  .grp .ch small{font-weight:500; color:#6a64a6}
+  .g-in{background:linear-gradient(140deg,#5fb8ff,#3d86ff)} .g-pr{background:linear-gradient(140deg,#ff8fd4,#ff5fb0)}
+  .g-st{background:linear-gradient(140deg,#ffc04e,#ff9326)} .g-out{background:linear-gradient(140deg,#76dd6e,#39c14a)}
+  .g-ax{background:linear-gradient(140deg,#9b8bff,#7a5cff); grid-column:1/-1}
+  .hsvg .offtag{display:none}
+  .hsvg.off .offtag{display:inline; animation:pop .35s ease}
+  .hsvg.off [data-k=ram] rect{fill:#d6d3e6 !important}
+  .hsvg.off [data-k=cpu]{opacity:.55}
+  .xinfo{text-align:left; margin-top:8px}
+  .cmp1{display:flex; gap:10px; align-items:flex-start; background:#faf8ff; border-radius:12px; padding:8px 10px; margin-top:6px; font-size:14.5px; line-height:1.55}
+  .cmp1 .e{font-size:24px; flex:none}
+  .qpic{text-align:center; font-size:64px; line-height:1; margin-top:6px}
+  .hsvg .hit{fill:transparent; cursor:pointer; transition:.15s}
+  .hsvg .hit:hover{fill:#ffd34e22}
+  .hsvg .hit.sel{fill:#ffd34e40; stroke:#ff6ec7; stroke-width:2}
+  .hsvg .hit.ok{fill:#39c14a40; stroke:#39c14a; stroke-width:2.5}
+  .hsvg .hit.bad{fill:#ff5f5f40; stroke:#ff5f5f; stroke-width:2.5}
+  .qpic .hsvg{max-width:440px; margin-top:6px}
+  .hsvg.kbd{max-width:600px}
+  .kbdw{overflow-x:auto; -webkit-overflow-scrolling:touch}
+  .kbdw .hsvg.kbd{min-width:520px}
+  .kbdw-hint{display:none; text-align:center; font-size:12.5px; color:#8a84a8; margin-top:2px}
+  @media (max-width:600px){ .kbdw-hint{display:block} }
+  .hsvg.kbd .hit.sel{fill:#ffb13bb0; stroke:#ff6ec7; stroke-width:1.5}
+  .hsvg.kbd .hit.ok{fill:#39c14a90} .hsvg.kbd .hit.bad{fill:#ff5f5f90}
+
+  /* ---- (IT) data units ---- */
+  .bulbs{display:grid; grid-template-columns:repeat(8,1fr); gap:6px; max-width:440px; margin:6px auto 0}
+  .bulb{border:none; cursor:pointer; font-family:inherit; border-radius:14px; padding:6px 0; background:#eceaf6; color:#9a93c9;
+    font-weight:800; font-size:18px; transition:.15s}
+  .bulb .e{display:block; font-size:24px; filter:grayscale(1); opacity:.45}
+  .bulb.on{background:linear-gradient(140deg,#fff3b0,#ffd34e); color:var(--ink); box-shadow:0 0 14px rgba(255,211,78,.85)}
+  .bulb.on .e{filter:none; opacity:1}
+  .bulb small{display:block; font-size:11px; font-weight:600}
+  .pv .bulb{cursor:default}
+  .byteout{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; margin-top:10px; text-align:center}
+  .byteout div{background:#faf9ff; border-radius:14px; padding:8px 4px; box-shadow:inset 0 0 0 2px #eee9fc}
+  .byteout small{display:block; font-size:12px; color:#9a93c9; font-weight:600}
+  .byteout b{font-size:clamp(18px,5vw,26px); letter-spacing:1px}
+  .ladder{max-width:520px; margin:8px auto 0}
+  .rung{display:flex; align-items:center; gap:10px; border-radius:16px; padding:9px 12px; color:#fff}
+  .rung .u{font-weight:800; font-size:18px; min-width:64px; line-height:1.15}
+  .rung .u small{display:block; font-size:11.5px; font-weight:500; opacity:.92}
+  .rung .ex{font-size:14px; line-height:1.45; flex:1; min-width:0}
+  .rung .e{font-size:24px; flex:none}
+  .ladder .step{text-align:center; font-weight:800; color:var(--purple); font-size:14px; padding:2px 0}
+
+  /* ---- (IT) software ---- */
+  .stack{display:grid; gap:6px; max-width:460px; margin:8px auto 0}
+  .lay{display:flex; align-items:center; gap:12px; border-radius:16px; padding:10px 14px; background:#f0eefc; font-weight:700;
+    font-size:15.5px; line-height:1.35; border:3px solid transparent; border-left:8px solid var(--lc,#c9c3e8); transition:.2s}
+  .lay .e{font-size:28px; flex:none}
+  .lay small{display:block; font-weight:500; font-size:12.5px; color:#6a64a6}
+  .lay.lost{opacity:.6}
+  .lay.on{background:linear-gradient(135deg,#fff3b0,#ffd34e); border-color:#ff9d42; transform:scale(1.03); box-shadow:var(--shadow-sm)}
+  @media (max-width:420px){
+    .bulbs{grid-template-columns:repeat(4,1fr)}
+    .rung{flex-wrap:wrap; row-gap:2px}
+    .rung .e{order:-1}
+    .rung .u{display:flex; align-items:baseline; gap:6px}
+    .rung .ex{flex-basis:100%}
+  }
+
+  /* ---- (EQ) บรรทัดคณิต + เหตุผล · ตาชั่ง ---- */
+  .story{background:#fff8e8; border-radius:18px; padding:14px; text-align:center; font-size:16.5px; line-height:1.7; margin-top:8px}
+  .story .pic{font-size:40px; letter-spacing:4px}
+  .story .ask{font-weight:800; font-size:19px; color:var(--purple)}
+  .lines{display:grid; gap:6px; margin-top:8px}
+  .ln{display:flex; flex-wrap:wrap; gap:2px 12px; align-items:baseline; background:#faf9ff; border-radius:12px; padding:8px 12px; border-left:5px solid #c9bdf5; animation:pop .35s ease}
+  .ln .m{font-weight:800; font-size:19px; overflow-wrap:anywhere}
+  .ln .r{font-size:14.5px; color:#6a64a6; line-height:1.5}
+  .ln.bad{background:#fff0f0; border-left-color:#ff5f5f} .ln.ok{background:#eafff0; border-left-color:#39c14a}
+  .eqmap{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px; text-align:center}
+  .eqmap div{background:#fff; border-radius:14px; padding:8px; box-shadow:var(--shadow-sm)}
+  .eqmap .w{display:block; font-size:13.5px; color:#6a64a6} .eqmap b{font-size:21px}
+  .bigeq{text-align:center; font-size:clamp(26px,7vw,38px); font-weight:800; margin:12px 0; color:var(--purple)}
+  .bsvg{display:block; width:100%; max-width:440px; margin:0 auto; height:auto}
+  .bsvg .beam,.bsvg .pan{transition:transform .55s cubic-bezier(.3,1.4,.5,1)}
+  .eqline{text-align:center; font-size:24px; font-weight:800; margin-top:6px}
+  .ops{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:8px}
+  .hist{background:#fdf6e9; border-left:6px solid #c58a2b; border-radius:14px; padding:12px 14px; margin-top:12px; font-size:15px; line-height:1.65}
+  .flash{animation:flash 1.8s ease}
+  @keyframes flash{0%,60%{background:#fff3b0; box-shadow:0 0 0 6px #fff3b0}100%{background:transparent; box-shadow:none}}
+  .stuck{margin-top:10px}
+  footer a{color:#7a5cff}
+  @media (max-width:600px){ .eqmap{grid-template-columns:1fr} }
+  /* ---- (EQ) บท 2 แบ่งของ: เศษส่วนซ้อน · แปลง A/B · สะพานไปแอปอื่น ---- */
+  .frc{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; line-height:1.15; font-weight:800; margin:0 3px}
+  .frc>span:first-child{border-bottom:2px solid currentColor; padding:0 4px}
+  .frc.big{font-size:26px; color:var(--purple)}
+  .frout{text-align:center; font-size:17px; margin-top:8px; line-height:1.8}
+  .frab{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; text-align:center}
+  .frab svg{display:block; width:100%; max-width:170px; margin:6px auto; background:#fff; border-radius:6px}
+  .frab span{font-size:15px; color:#6a64a6}
+  .yr{display:grid; grid-template-columns:repeat(5,1fr); gap:4px; padding:6px}
+  .yr i{font-style:normal; text-align:center; background:#eef0f5; border-radius:10px; padding:10px 2px; color:#8a8fa3; transition:.3s}
+  .yr i.on{background:linear-gradient(140deg,#76dd6e,#39c14a); color:#fff}
+  .yr b{display:block; font-size:17px} .yr small{font-size:12px}
+  .dc{display:grid; gap:8px; justify-items:center; margin-top:8px}
+  .dc select{font-family:inherit; font-size:16px; padding:6px 8px; border:2px solid #e6e2fb; border-radius:12px; background:#fff}
+  .bridge{display:block; margin-top:12px; background:#eef7ff; border:2px dashed #7fb6ff; border-radius:14px; padding:10px 14px; font-size:14.5px; line-height:1.55; color:#2b5fa8; text-decoration:none}
+  .bridge:hover{background:#e2f0ff}
+  .bld-a{min-height:56px; display:flex; flex-wrap:wrap; gap:6px; justify-content:center; align-items:center; background:#fff; border:2px dashed #c9bdf5; border-radius:14px; padding:8px; margin-top:8px}
+  .bld-ph{color:#999; font-size:14.5px}
+  .tile{border:none; cursor:pointer; font-family:inherit; font-weight:800; font-size:19px; min-width:46px; padding:8px 12px; border-radius:12px; background:#efeaff; color:var(--purple)}
+  .tile.used{opacity:.3; pointer-events:none}
+  .bld-a .tile{background:linear-gradient(135deg,var(--purple),var(--blue)); color:#fff}
+  /* บท 6 · ถาดสลับได้ */
+  .trays{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; padding:6px; max-width:360px; margin:0 auto}
+  .trays .tr{border:none; font-family:inherit; border-radius:12px; padding:6px 2px; font-size:24px; line-height:1.1; background:#fff1e6; transition:.2s}
+  .trays .tr.t{background:#ffe3e3}
+  .trays button.tr{cursor:pointer} .trays button.tr:active{transform:scale(.94)}
+  .trays .tr small{display:block; font-size:12px; font-weight:700; color:#8a6a3a}
+  .two{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:8px}
+  .two div{background:#fff; border:2px dashed #c9bdf5; border-radius:14px; padding:8px 14px; font-weight:700; text-align:center}
+  .two b{display:block; font-size:24px; color:var(--purple)}
+
+.chs{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.chs .tab{text-align:left;white-space:normal;line-height:1.5}
+.chs.row2{flex-direction:row;flex-wrap:wrap}
+.tab.bad{background:#ffe3e3;border-color:#f19999;color:#8a1f1f}
+.lawline{line-height:2.4;margin:10px 0}
+.lawline button{font:inherit;border:2px solid transparent;border-radius:10px;padding:2px 8px;margin:2px 0;cursor:pointer}
+.lawline .lp-who{background:#e8e8ff}.lawline .lp-act{background:#fff1c9}.lawline .lp-name{background:#dff5e1}.lawline .lp-pen{background:#ffe1ec}
+.lawline button.on{border-color:#333}
+.agepins,.ageband{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="bubbles" id="bubbles"></div>
+<div class="wrap">
+
+  <!-- ================= HOME ================= -->
+  <header>
+    <div class="mascot" id="mascot">📕</div>
+    <div class="title">กฎหมายใกล้ตัว</div>
+    <div class="subtitle">กฎหมายที่ประชาชนควรรู้ · จากเรื่องในชีวิตจริง ไม่ต้องท่องมาตรา 📏</div>
+    <div class="starbar">⭐ ดาวสะสม: <b id="totalStars">0</b></div>
+  </header>
+
+  <div class="screen active" id="home">
+    <div class="menu">
+      <button class="card c1" onclick="go('gate')"><span class="ico">🚪</span>ทำไมต้องรู้กฎหมาย<small>อาญา · แพ่ง · โทษ 5 สถาน</small></button>
+      <button class="card c2" onclick="go('prop')"><span class="ico">🎒</span>ของหาย ผิดฐานอะไร<small>ลัก · วิ่งราว · ชิง · ปล้น · ฉ้อโกง</small></button>
+      <button class="card c3" onclick="go('age')"><span class="ico">📏</span>อายุกับกฎหมาย<small>บัตร · หมั้น · บรรลุนิติภาวะ · เด็กทำผิด</small></button>
+      <button class="card c8" onclick="openGame()"><span class="ico">🎮</span>เกมพิชิตด่าน<small>ตอบถูก ปลดล็อกด่าน!</small></button>
+    </div>
+    <p class="hint" style="margin-top:16px">💡 ทุกบทมี 3 ชั้น: 🌱 อ่านแค่ชั้นแรกก็เข้าใจ · อยากรู้มากขึ้นค่อยกดต่อ 🌿 🌳<br>เรียนตามลำดับ บนลงล่าง · ตอบผิดได้ ไม่เป็นไร เกมจะบอกว่าติดตรงไหน แล้วพากลับไปดู 🙂</p>
+  </div>
+
+  <!-- ================= CH 0 · ทำไมต้องรู้กฎหมาย ================= -->
+  <div class="screen" id="gate">
+    <button class="backbtn" onclick="home()">⬅️ กลับหน้าหลัก</button>
+    <div class="panel">
+      <h2>🚪 ทำไมต้องรู้กฎหมาย</h2>
+
+      <div class="layer L1">
+        <h3>🌱 ชั้นเมล็ด · รู้แค่นี้ก็เข้าใจ</h3>
+        <p>ยังไม่ต้องจำเลขมาตรา · เริ่มจากเรื่องที่อาจเกิดกับใครก็ได้ที่ตลาด 🛒</p>
+
+        <div class="step-h" id="gate-s1"><span class="sn">1</span> 👛 เก็บกระเป๋าเงินได้</div>
+        <div class="story">
+          <div class="pic">👛💵</div>
+          <p>ป้าเดินตลาดเช้า เจอ<b>กระเป๋าเงินตกอยู่</b> ข้างในมีเงิน 3,000 บาท · ป้าเก็บไว้ใช้เอง<br>ต่อมาเจ้าของแจ้งความ ป้าบอกตำรวจว่า <b>"ป้าไม่รู้ว่าผิดกฎหมาย"</b></p>
+          <p class="ask">ป้าอ้างแบบนี้ แล้วพ้นผิดได้ไหม?</p>
+        </div>
+        <div id="gq1"></div>
+        <div class="memo">🔑 <b>อ้างว่าไม่รู้กฎหมาย ใช้แก้ตัวไม่ได้</b> · เพราะถ้าอ้างได้ ใครทำผิดก็จะอ้างกันหมด · กฎหมายจึงถือว่า<b>ทุกคนต้องรู้</b> (ประมวลกฎหมายอาญา มาตรา 64) · นี่แหละเหตุผลที่เราต้องเรียน</div>
+
+        <div class="step-h" id="gate-s2"><span class="sn">2</span> ⚖️ กฎหมาย 2 ฝั่ง</div>
+        <p class="tip">เรื่องกระเป๋าเงิน มีคำถาม 2 แบบ: <b>ป้าจะถูกลงโทษไหม</b> · กับ <b>เจ้าของจะได้เงินคืนไหม</b> · กฎหมายก็แบ่งเป็น 2 ฝั่งแบบนี้เหมือนกัน 👇</p>
+        <div class="tw"><table class="t">
+          <tr><th></th><th>🚓 กฎหมายอาญา</th><th>🤝 กฎหมายแพ่ง</th></tr>
+          <tr><td>ถามว่า</td><td>ทำผิดแล้ว<b>รัฐลงโทษ</b>ไหม</td><td>ใครมี<b>สิทธิ</b>อะไร ใครต้อง<b>ชดใช้</b></td></tr>
+          <tr><td>ตัวอย่าง</td><td>ลักทรัพย์ · วิ่งราว · ฉ้อโกง</td><td>อายุ · หมั้น สมรส · มรดก · สัญญา</td></tr>
+          <tr><td>ผลที่ได้</td><td>จำคุก · ปรับ ฯลฯ</td><td>คืนของ · ใช้เงิน · ได้สิทธิ</td></tr>
+        </table></div>
+        <div class="memo">💡 เรื่องเดียวกันอาจเกี่ยว<b>ทั้งสองฝั่ง</b> · ป้าอาจถูกลงโทษทางอาญา และยังต้องคืนเงินให้เจ้าของด้วย</div>
+
+        <div class="step-h" id="gate-s3"><span class="sn">3</span> 🪜 โทษทางอาญามี 5 อย่าง</div>
+        <p class="tip">ประมวลกฎหมายอาญา มาตรา 18 เรียงไว้ 5 สถาน · แตะดูทีละข้อ ตามลำดับในมาตรา 👇</p>
+        <div class="lines" id="pun5"></div>
+        <div class="center" style="margin-top:8px"><button class="btn alt" id="pun5b" onclick="pun5Next()">👉 ดูขั้นต่อไป</button></div>
+        <div class="memo">👶 <b>คนที่ทำผิดตอนอายุต่ำกว่า 18 ปี</b> · ห้ามใช้โทษประหารชีวิตและจำคุกตลอดชีวิต (มาตรา 18) · เรื่องอายุไปดูต่อในบท 📏</div>
+
+        <div class="step-h"><span class="sn">4</span> 🗺️ เส้นทางของเรา</div>
+        <div class="path">
+          <span>🚪 ทำไมต้องรู้</span><span>➜</span><span>🎒 ของหาย ผิดฐานอะไร</span><span>➜</span><span>📏 อายุกับกฎหมาย</span>
+        </div>
+        <button class="more" onclick="openLayer('gateL2',this)">🌿 อยากรู้อีกนิด · ลองแยกเรื่องเอง ⬇️</button>
+      </div>
+
+      <div class="layer L2 hide" id="gateL2">
+        <h3>🌿 ชั้นต้นกล้า · ลองแยกเอง</h3>
+        <p class="tip">อ่านเรื่องสั้น แล้วเลือกว่าเป็น<b>ฝั่งไหน</b> · ผิดแล้วจะบอกเหตุผล</p>
+        <div id="gq2"></div>
+        <div class="step-h" id="gate-ord"><span class="sn">✋</span> เรียงโทษ 5 สถานเอง</div>
+        <p class="tip">แตะโทษ<b>ตามลำดับข้อ (1) ถึง (5)</b> ในมาตรา 18</p>
+        <div id="ord5"></div>
+        <button class="more" onclick="openLayer('gateL3',this)">🌳 เจาะลึก · อ่านประโยคกฎหมายให้เป็น ⬇️</button>
+      </div>
+
+      <div class="layer L3 hide" id="gateL3">
+        <h3>🌳 ชั้นต้นไม้ใหญ่ · อ่านประโยคกฎหมายให้เป็น</h3>
+        <p class="tip">มาตราส่วนใหญ่เขียนเป็นแบบเดียวกัน · <b>แตะแต่ละท่อน</b> ของมาตรา 334 (ลักทรัพย์) ดูว่าบอกอะไร 👇</p>
+        <div class="lawline" id="parts334"></div>
+        <div class="info" id="parts334fb">แตะท่อนที่มีสีด้านบน</div>
+        <div class="memo">🧩 <b>สูตรอ่านมาตรา</b> · "ผู้ใด + <u>ทำอะไร</u> → ผิดฐาน<u>อะไร</u> → โทษ<u>เท่าไร</u>" · ท่อน "ทำอะไร" คือ<b>ด่านที่ต้องผ่านครบ</b> ถึงจะผิดฐานนั้น</div>
+        <div class="step-h" id="gate-num"><span class="sn">🔢</span> คำเล็ก ๆ ที่เปลี่ยนความหมาย</div>
+        <div class="tw"><table class="t">
+          <tr><th>เขียนว่า</th><th>แปลว่า</th></tr>
+          <tr><td>จำคุก<b>ไม่เกิน</b> 3 ปี</td><td>ศาลลงได้ตั้งแต่น้อย ๆ จน<b>ถึง</b> 3 ปี · ไม่มีขั้นต่ำ</td></tr>
+          <tr><td>จำคุก<b>ตั้งแต่</b> 5 ปี<b>ถึง</b> 10 ปี</td><td>มี<b>ขั้นต่ำ</b> 5 ปี และขั้นสูง 10 ปี</td></tr>
+          <tr><td>จำคุก… <b>และ</b>ปรับ…</td><td>เขียนโทษไว้<b>คู่กันทั้งสองอย่าง</b></td></tr>
+          <tr><td>จำคุก… <b>หรือ</b>ปรับ… <b>หรือทั้งจำทั้งปรับ</b></td><td>เขียนให้<b>เลือก</b>อย่างใดอย่างหนึ่ง หรือทั้งสองอย่าง</td></tr>
+        </table></div>
+        <div class="memo ex">⚠️ <b>"ไม่เกิน" มีแต่เพดาน · "ตั้งแต่…ถึง" มีทั้งพื้นและเพดาน</b> · คำเล็ก ๆ แบบนี้เปลี่ยนความหมายทั้งประโยค อ่านช้า ๆ ทุกครั้ง</div>
+        <div class="center" style="margin-top:16px"><button class="btn go" onclick="openGame('gate')">🎮 ไปพิชิตด่านเลย!</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CH 1 · ของหาย ผิดฐานอะไร ================= -->
+  <div class="screen" id="prop">
+    <button class="backbtn" onclick="home()">⬅️ กลับหน้าหลัก</button>
+    <div class="panel">
+      <h2>🎒 ของหาย ผิดฐานอะไร</h2>
+
+      <div class="layer L1">
+        <h3>🌱 ชั้นเมล็ด · รู้แค่นี้ก็เข้าใจ</h3>
+        <p>ของหายเหมือนกัน แต่<b>วิธีที่ของหายไป</b> ทำให้ชื่อความผิดต่างกัน · ไม่ต้องท่อง ใช้<b>คำถามทีละข้อ</b>ก็แยกได้ 🌳</p>
+
+        <div class="step-h" id="prop-s1"><span class="sn">1</span> 📱 ลักทรัพย์ คือแบบไหน</div>
+        <div class="story">
+          <div class="pic">☕📱🚶</div>
+          <p>นั่งร้านกาแฟ วาง<b>มือถือไว้บนโต๊ะ</b> แล้วลุกไปห้องน้ำ · กลับมามือถือหายไปแล้ว มีคน<b>แอบหยิบไป</b></p>
+        </div>
+        <div class="memo">🔑 <b>ลักทรัพย์</b> = เอา<b>ของของคนอื่น</b>ไป <b>โดยทุจริต</b> (มาตรา 334) · <b>ทุจริต</b> = ตั้งใจเอาไปเป็นของตัวเอง ทั้งที่รู้ว่าไม่ใช่ของตัว · วิ่งราว ชิง ปล้น = <b>ลักทรัพย์ + มีอะไรเพิ่ม</b></div>
+
+        <div class="step-h" id="prop-s2"><span class="sn">2</span> 🌳 ต้นไม้แยกฐานความผิด</div>
+        <p class="tip">เลือกเรื่อง แล้ว<b>ตอบคำถามทีละข้อ</b> · ต้นไม้จะพาไปถึงชื่อความผิดเอง</p>
+        <div class="tabs" id="trTabs">
+          <button class="tab on" onclick="trStory(0,this)">☕ มือถือบนโต๊ะ</button>
+          <button class="tab" onclick="trStory(1,this)">🛵 กระชากสร้อย</button>
+          <button class="tab" onclick="trStory(2,this)">🔪 จี้เอากระเป๋า</button>
+          <button class="tab" onclick="trStory(3,this)">👥 รุม 3 คน</button>
+          <button class="tab" onclick="trStory(4,this)">😠 ขู่ทวงเงิน</button>
+        </div>
+        <div class="story" id="trS"></div>
+        <div class="lines" id="trPath"></div>
+        <div id="trQ"></div>
+        <div class="memo">🪜 <b>ยิ่งใช้กำลัง ยิ่งหนัก</b> · แอบเอาไป = ลักทรัพย์ · ฉกต่อหน้า = วิ่งราวทรัพย์ · ใช้กำลังหรือขู่ทำร้ายเดี๋ยวนั้น = ชิงทรัพย์ · ชิงด้วยกัน 3 คนขึ้นไป = ปล้นทรัพย์</div>
+
+        <div class="step-h" id="prop-s3"><span class="sn">3</span> ☂️ หยิบผิดเพราะเข้าใจผิด</div>
+        <div class="story">
+          <div class="pic">☂️☂️</div>
+          <p>ร่มสีเดียวกันวางคู่กันหน้าร้าน · เพื่อน<b>หยิบร่มของคนอื่นไป เพราะนึกว่าเป็นร่มของตัวเอง</b></p>
+        </div>
+        <div id="pq3"></div>
+        <div class="memo">🧠 ความผิดอาญาส่วนใหญ่ต้องมี<b>เจตนา</b> · ถ้า<b>ไม่รู้</b>ว่าเป็นของคนอื่น ก็ถือว่าตั้งใจเอาของคนอื่นไม่ได้ (มาตรา 59) · ต่างจากเรื่องป้า: ป้า<b>รู้</b>ว่าไม่ใช่ของตัวเอง แค่ไม่รู้ว่ากฎหมายห้าม</div>
+        <button class="more" onclick="openLayer('propL2',this)">🌿 อยากรู้อีกนิด · ของไม่ได้ถูก "เอาไป" ⬇️</button>
+      </div>
+
+      <div class="layer L2 hide" id="propL2">
+        <h3>🌿 ชั้นต้นกล้า · ของไม่ได้ถูก "เอาไป"</h3>
+        <p class="tip">บางทีคนร้ายไม่ต้องหยิบเอง · เจ้าของ<b>ยื่นให้</b> หรือของ<b>อยู่ในมือคนร้ายอยู่แล้ว</b> · ต้นไม้เลยต้องถามก่อนว่า <b>"ตอนนั้นของอยู่ในมือใคร"</b></p>
+        <div class="tw"><table class="t">
+          <tr><th>เรื่อง</th><th>ชื่อความผิด</th><th>จุดสังเกต</th></tr>
+          <tr><td>ฝากมือถือไว้ เพื่อนเอาไปขายเอง</td><td><b>ยักยอก</b> (ม.352)</td><td>ของ<b>อยู่ในมือ</b>คนทำผิดแล้ว · เบียดบังเป็นของตัว</td></tr>
+          <tr><td>ร้านออนไลน์<b>ตั้งใจหลอกตั้งแต่แรก</b> รับเงินแล้วไม่ส่งของ</td><td><b>ฉ้อโกง</b> (ม.341)</td><td>เจ้าของ<b>ยื่นให้เอง เพราะถูกหลอก</b></td></tr>
+          <tr><td>"พรุ่งนี้ไม่จ่าย จะมาทำร้าย" แล้วยอมจ่าย</td><td><b>กรรโชก</b> (ม.337)</td><td>ถูก<b>ขู่</b> จนยอมให้</td></tr>
+          <tr><td>"ส่งกระเป๋ามาเดี๋ยวนี้ ไม่งั้นแทง"</td><td><b>ชิงทรัพย์</b> (ม.339)</td><td>ขู่ว่าจะทำร้าย<b>ในทันใดนั้น</b></td></tr>
+        </table></div>
+        <p class="tip">ลองตอบเอง 👇</p>
+        <div id="pq4"></div>
+        <div class="step-h" id="prop-rk"><span class="sn">🛒</span> คนซื้อของโจร ผิดด้วยไหม</div>
+        <div class="story">
+          <div class="pic">📱💸</div>
+          <p>มีคนมาขายมือถือรุ่นใหม่ <b>ราคาถูกผิดปกติ</b> บอกตรง ๆ ว่า "ได้มาจากการขโมย" · ถ้าซื้อไว้ จะผิดไหม</p>
+        </div>
+        <div class="memo">🔑 <b>รับของโจร</b> (มาตรา 357) = ช่วยซ่อน ช่วยขาย <b>ซื้อ</b> รับจำนำ หรือรับไว้ ซึ่งของที่ได้มาจาก ลักทรัพย์ วิ่งราว กรรโชก ชิง ปล้น ฉ้อโกง ยักยอก ฯลฯ · คนซื้อที่<b>รู้</b>ว่าเป็นของโจรก็ผิดด้วย</div>
+        <a class="bridge" href="../it/#cy" target="_blank" rel="noopener">🛡️ หลอกโอนเงินทางออนไลน์ แก๊งคอลเซ็นเตอร์ ดูวิธีรู้ทันได้ในแอป <b>ไอทีง่ายนิดเดียว</b> บทภัยไซเบอร์ ↗</a>
+        <button class="more" onclick="openLayer('propL3',this)">🌳 เจาะลึก · โทษ และ "ยอมความได้" ⬇️</button>
+      </div>
+
+      <div class="layer L3 hide" id="propL3">
+        <h3>🌳 ชั้นต้นไม้ใหญ่ · บันไดโทษ และยอมความได้</h3>
+        <p class="tip">โทษตามประมวลกฎหมายอาญา (ฐานธรรมดา ไม่รวมเหตุที่ทำให้หนักขึ้น) 👇</p>
+        <div class="tw"><table class="t">
+          <tr><th>ความผิด</th><th>โทษ</th></tr>
+          <tr><td>ลักทรัพย์ ม.334</td><td>จำคุกไม่เกิน 3 ปี <b>และ</b>ปรับไม่เกิน 60,000 บาท</td></tr>
+          <tr><td>วิ่งราวทรัพย์ ม.336</td><td>จำคุกไม่เกิน 5 ปี <b>และ</b>ปรับไม่เกิน 100,000 บาท</td></tr>
+          <tr><td>ชิงทรัพย์ ม.339</td><td>จำคุก<b>ตั้งแต่</b> 5 ปี<b>ถึง</b> 10 ปี และปรับตั้งแต่ 100,000 ถึง 200,000 บาท</td></tr>
+          <tr><td>ปล้นทรัพย์ ม.340</td><td>จำคุกตั้งแต่ 10 ปีถึง 15 ปี และปรับตั้งแต่ 200,000 ถึง 300,000 บาท</td></tr>
+          <tr><td>กรรโชก ม.337</td><td>จำคุกไม่เกิน 5 ปี และปรับไม่เกิน 100,000 บาท</td></tr>
+          <tr><td>ฉ้อโกง ม.341</td><td>จำคุกไม่เกิน 3 ปี <b>หรือ</b>ปรับไม่เกิน 60,000 บาท หรือทั้งจำทั้งปรับ</td></tr>
+          <tr><td>ยักยอก ม.352</td><td>จำคุกไม่เกิน 3 ปี หรือปรับไม่เกิน 60,000 บาท หรือทั้งจำทั้งปรับ</td></tr>
+          <tr><td>รับของโจร ม.357</td><td>จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ</td></tr>
+        </table></div>
+        <div class="step-h" id="prop-yk"><span class="sn">👛</span> เก็บได้ · โอนเงินผิดบัญชี</div>
+        <p class="tip">กลับไปที่ป้าในบท 🚪 · ของที่<b>เก็บได้</b> หรือของที่คนอื่น<b>ส่งให้เพราะเข้าใจผิด</b> แล้วเบียดบังไว้ ผิด<b>ยักยอก</b> แต่โทษ<b>เพียงกึ่งหนึ่ง</b> (มาตรา 352 วรรคสอง)</p>
+        <div id="pq5"></div>
+        <div class="memo">🤝 <b>ยอมความได้</b> = ผู้เสียหายกับคนทำผิด<b>ตกลงกันได้</b> แล้วคดีจบได้ · ในบทนี้ <b>ฉ้อโกง</b> (ม.348 · ยกเว้นฉ้อโกงประชาชน ม.343) และ <b>ยักยอก</b> (ม.356) ยอมความได้ · ส่วน <b>ลักทรัพย์ วิ่งราว ชิง ปล้น</b> โดยทั่วไปยอมความไม่ได้</div>
+        <div class="memo ex">👨‍👩‍👧 <b>ข้อยกเว้นในครอบครัว</b> (มาตรา 71) · ลักทรัพย์ วิ่งราว (วรรคแรก) ฉ้อโกง ยักยอก ฯลฯ ถ้าทำกันเอง<b>ระหว่างพ่อแม่กับลูก หรือพี่น้องร่วมพ่อแม่เดียวกัน</b> ให้ยอมความได้ · ถ้า<b>สามีทำต่อภริยา หรือภริยาทำต่อสามี</b> ผู้กระทำไม่ต้องรับโทษ</div>
+        <div class="center" style="margin-top:16px"><button class="btn go" onclick="openGame('prop')">🎮 ไปพิชิตด่านเลย!</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CH 2 · อายุกับกฎหมาย ================= -->
+  <div class="screen" id="age">
+    <button class="backbtn" onclick="home()">⬅️ กลับหน้าหลัก</button>
+    <div class="panel">
+      <h2>📏 อายุกับกฎหมาย</h2>
+
+      <div class="layer L1">
+        <h3>🌱 ชั้นเมล็ด · รู้แค่นี้ก็เข้าใจ</h3>
+        <p>อายุเปลี่ยน สิทธิกับหน้าที่ก็เปลี่ยน · ลองดูชีวิตคนหนึ่งตั้งแต่เกิดจนแก่ บนไม้บรรทัดเส้นเดียว 📏</p>
+
+        <div class="step-h" id="age-s1"><span class="sn">1</span> 📍 หมุดอายุในชีวิต</div>
+        <p class="tip">แตะหมุดแต่ละอัน 👇 (อายุ<b>บริบูรณ์</b> = อายุครบเต็มปีแล้ว)</p>
+        <div class="agepins" id="agePins"></div>
+        <div class="info" id="agePinFb">แตะหมุดอายุด้านบน</div>
+
+        <div class="step-h" id="age-s2"><span class="sn">2</span> 🚸 เด็กทำผิด ต้องรับโทษไหม</div>
+        <p class="tip">กฎหมายอาญาแบ่งช่วงอายุตอน<b>ทำผิด</b> · แตะแต่ละช่วง 👇</p>
+        <div class="ageband" id="ageBand"></div>
+        <div class="info" id="ageBandFb">แตะช่วงอายุด้านบน</div>
+        <div class="memo">🔑 ยิ่งอายุน้อย กฎหมายยิ่งเน้น<b>ดูแล แก้ไข</b> มากกว่าลงโทษ · ช่วงอายุใช้ถ้อยคำในมาตราตรง ๆ: "ไม่เกิน" · "กว่า" · "ต่ำกว่า" · "ตั้งแต่"</div>
+
+        <div class="step-h" id="age-s3"><span class="sn">3</span> 📚 ระวังหนังสือเก่า</div>
+        <div class="tw"><table class="t">
+          <tr><th>เรื่อง</th><th>ข้อมูลเก่า ❌</th><th>ปัจจุบัน ✅</th></tr>
+          <tr><td>ช่วงอายุแรกสุดของเด็กทำผิด (ไม่ต้องรับโทษ · ส่งให้เจ้าหน้าที่คุ้มครองเด็ก)</td><td>ไม่เกิน 10 ปี</td><td><b>ไม่เกิน 12 ปี</b> (แก้ปี 2565)</td></tr>
+          <tr><td>อายุที่หมั้น · สมรสได้</td><td>17 ปี</td><td><b>18 ปีบริบูรณ์ ทั้งสองฝ่าย</b> (พ.ร.บ.แก้ไขเพิ่มเติม ป.พ.พ. ฉบับที่ 24 พ.ศ. 2567 ที่เรียกกันว่า "สมรสเท่าเทียม")</td></tr>
+        </table></div>
+        <div class="memo ex">⚠️ ประกาศสอบเขียนไว้ว่า <b>ข้อสอบใช้ข้อมูลที่เป็นปัจจุบันเท่านั้น</b> · ข้อสอบเก่าและหนังสือติวเก่าบางเล่มยังเขียนตัวเลขเดิม</div>
+        <button class="more" onclick="openLayer('ageL2',this)">🌿 อยากรู้อีกนิด · ตอบเรื่องจริงตามอายุ ⬇️</button>
+      </div>
+
+      <div class="layer L2 hide" id="ageL2">
+        <h3>🌿 ชั้นต้นกล้า · ตอบเรื่องจริงตามอายุ</h3>
+        <p class="tip">ดูอายุในเรื่องก่อน แล้วค่อยเลือก · ลืมก็เลื่อนขึ้นไปดูหมุดได้</p>
+        <div id="aq2"></div>
+        <div class="memo">🧩 <b>อายุ 18–19 ปี</b> หมั้นได้แล้ว แต่<b>ยังเป็นผู้เยาว์</b> (ยังไม่ถึง 20) · จะหมั้นต้องได้รับ<b>ความยินยอมจากพ่อแม่ (หรือผู้ปกครอง)</b>ก่อน (ม.1436)</div>
+        <button class="more" onclick="openLayer('ageL3',this)">🌳 เจาะลึก · บรรลุนิติภาวะ 2 ทาง ⬇️</button>
+      </div>
+
+      <div class="layer L3 hide" id="ageL3">
+        <h3>🌳 ชั้นต้นไม้ใหญ่ · บรรลุนิติภาวะ 2 ทาง และบัตรประชาชน</h3>
+        <div class="tw"><table class="t">
+          <tr><th>เรื่อง</th><th>กฎหมายว่า</th></tr>
+          <tr><td>บรรลุนิติภาวะ ทาง 1</td><td>อายุ<b>ยี่สิบปีบริบูรณ์</b> (ป.พ.พ. ม.19)</td></tr>
+          <tr><td>บรรลุนิติภาวะ ทาง 2</td><td><b>สมรส</b> ถูกต้องตามมาตรา 1448 (ม.20)</td></tr>
+          <tr><td>ผู้เยาว์ทำนิติกรรม</td><td>ต้องได้<b>ความยินยอมของผู้แทนโดยชอบธรรม</b> (เช่น พ่อแม่) ก่อน (ม.21)</td></tr>
+          <tr><td>ทำพินัยกรรม</td><td>อายุ<b>สิบห้าปีบริบูรณ์</b> (ม.25)</td></tr>
+          <tr><td>หมั้นตอนอายุไม่ถึง 18</td><td>การหมั้นเป็น<b>โมฆะ</b> (ม.1435)</td></tr>
+          <tr><td>สมรสตอนอายุไม่ถึง 18</td><td>ทำได้ต่อเมื่อ<b>ศาลอนุญาต</b> เพราะมีเหตุอันสมควร (ม.1448)</td></tr>
+          <tr><td>ยื่นทำบัตรครั้งแรก</td><td>ภายใน <b>60 วัน</b> นับแต่วันอายุครบ 7 ปีบริบูรณ์ (พ.ร.บ.บัตรฯ ม.6)</td></tr>
+          <tr><td>อายุบัตร</td><td><b>8 ปี</b> นับแต่วันเกิดที่ถึงหลังวันออกบัตร (ม.6 ทวิ)</td></tr>
+          <tr><td>ทำผิดตอนอายุต่ำกว่า 18 ในคดีโทษประหาร/ตลอดชีวิต</td><td>ให้ถือว่าเปลี่ยนเป็น<b>จำคุก 50 ปี</b> (ป.อ. ม.18)</td></tr>
+        </table></div>
+        <div id="aq3"></div>
+        <div class="center" style="margin-top:16px"><button class="btn go" onclick="openGame('age')">🎮 ไปพิชิตด่านเลย!</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GAME ================= -->
+  <div class="screen" id="game">
+    <button class="backbtn" onclick="home()">⬅️ กลับหน้าหลัก</button>
+    <div class="panel" id="game-menu">
+      <h2 id="gTitle">🎮 เกมพิชิตด่าน</h2>
+      <div class="tabs" id="gTabs"></div>
+      <p class="lead">ด่านละ 5 ข้อ สุ่มใหม่ทุกครั้ง · มีหัวใจ ❤️ 3 ดวง · ตอบถูก 4 ข้อขึ้นไป = ผ่าน ปลดล็อกด่านถัดไป 🔓</p>
+      <div class="levels" id="levels"></div>
+      <p class="hint" style="margin-top:12px">ข้อที่ตอบผิด จะวนกลับมาถามอีกในรอบหน้า 🔁</p>
+    </div>
+
+    <div class="panel" id="game-play" style="display:none">
+      <div class="qhead"><span id="q-count">ข้อ 1 / 5</span><span class="hearts" id="q-hearts">❤️❤️❤️</span><span>ถูก: <span id="q-score">0</span></span></div>
+      <div class="qprog"><i id="q-prog" style="width:0%"></i></div>
+      <div class="qpic" id="q-pic"></div>
+      <div class="question" id="q-text">...</div>
+      <div class="choices txt" id="q-choices"></div>
+      <div class="feedback" id="q-fb"></div>
+      <div class="why" id="q-why"></div>
+      <div class="center"><button class="btn go nextbtn" id="q-next" onclick="nextQ()">ข้อต่อไป ➡️</button></div>
+    </div>
+
+    <div class="panel" id="game-end" style="display:none">
+      <div class="scorebig">
+        <div class="stars" id="e-stars">⭐⭐⭐</div>
+        <div class="msg" id="e-msg">เก่งมาก!</div>
+        <div class="detail" id="e-detail">ทำถูก 5 จาก 5 ข้อ</div>
+        <div class="center" id="e-btns" style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn fire" id="ch-retry" onclick="retryChallenge()">🔥 ท้าทายใหม่</button>
+
+  <footer>
+    📕 สื่อการเรียนรู้ "กฎหมายใกล้ตัว" · เปิดได้ทุกอุปกรณ์<br>
+    ข้อมูลกฎหมาย ณ วันที่ 8 พฤศจิกายน 2569 · คัดจากตัวบทฉบับปรับปรุงล่าสุดของสำนักงานคณะกรรมการกฤษฎีกา<br>
+    ชุด 1 มี 3 บท · บทต่อไปกำลังทำ · เรื่องกฎหมายดิจิทัล ดูในแอป <a href="https://suchart-onlaiad-mac.github.io/it/#law" target="_blank" rel="noopener">ไอทีง่ายนิดเดียว</a>
+  </footer>
+</div>
+
+<script>
+/* ============ helpers ============ */
+const $ = id => document.getElementById(id);
+const SAVE_KEY='law-v1';
+let save={stars:{}, wrong:[]};
+try{ const s=JSON.parse(localStorage.getItem(SAVE_KEY)); if(s&&s.stars) save=s; }catch(e){}
+function persist(){ try{ localStorage.setItem(SAVE_KEY,JSON.stringify(save)); }catch(e){} }
+function totalStars(){ return Object.values(save.stars).reduce((a,b)=>a+b,0); }
+function showStars(){ $('totalStars').textContent=totalStars(); }
+showStars();
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  const r=$('ch-retry'); if(r) r.style.display=(town&&CHS[town.ch].scr===id)?'block':'none';
+  if(!keepLayers) collapseLayers(id); keepLayers=false; // กลับเข้าบทเมื่อไหร่ เริ่มที่ 🌱 เสมอ
+  refreshLayerPlay(id);
+}
+function home(){ go('home'); }
+
+/* ============ ชั้น 🌿🌳: กดเปิด/ซ่อน · ลองเล่นท้ายชั้น (ด่าน 1/2/3 = ชั้น 🌱🌿🌳) ============ */
+const LNM=['ชั้นเมล็ด','ชั้นต้นกล้า','ชั้นต้นไม้ใหญ่'], LIC=['🌱','🌿','🌳'];
+let keepLayers=false;
+const moreBtn = id => document.querySelector(`.more[onclick^="openLayer('${id}'"]`);
+function markMore(id,open){
+  const b=moreBtn(id); if(!b) return;
+  if(!b.dataset.t) b.dataset.t=b.innerHTML;
+  const n=+id.slice(-1)-1;
+  b.innerHTML=open?`⬆️ ซ่อน${LNM[n]} ${LIC[n]}`:b.dataset.t;
+}
+function openLayer(id){
+  const el=$(id);
+  if(!el.classList.contains('hide')) return closeLayer(id);
+  el.classList.remove('hide'); markMore(id,true);
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),50);
+}
+function closeLayer(id){ // ซ่อน 🌿 = ซ่อน 🌳 ด้วย (ปุ่มเปิด 🌳 อยู่ใน 🌿)
+  const scr=id.slice(0,-2);
+  for(let k=+id.slice(-1);k<=3;k++){ const el=$(scr+'L'+k); if(el){ el.classList.add('hide'); markMore(scr+'L'+k,false); } }
+  const b=moreBtn(id); if(b) setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'center'}),50);
+}
+function collapseLayers(scr){
+  [2,3].forEach(k=>{ const el=$(scr+'L'+k); if(el){ el.classList.add('hide'); markMore(scr+'L'+k,false); } });
+}
+function readLayer(scr,i){ // จากหน้าผลเกม → กลับไปอ่านชั้น i (0=🌱) เปิดชั้นที่ต้องผ่านไว้ให้
+  keepLayers=true; go(scr); collapseLayers(scr);
+  for(let k=2;k<=i+1;k++){ $(scr+'L'+k).classList.remove('hide'); markMore(scr+'L'+k,true); }
+  if(i>0) setTimeout(()=>$(scr+'L'+(i+1)).scrollIntoView({behavior:'smooth',block:'start'}),400);
+}
+function layerPlay(ch,i){ openGame(ch); if(isOpen(i)) startGame(i); } // ยังล็อก → อยู่หน้าแผนที่ด่าน
+function refreshLayerPlay(scr){
+  document.querySelectorAll(`#${scr} .lp button`).forEach(b=>{
+    const i=+b.dataset.i, Ls=LEVELS.filter(L=>L.ch===b.dataset.ch), st=save.stars[Ls[i].id]||0,
+      open=i===0||(save.stars[Ls[i-1].id]||0)>0;
+    b.textContent=!open?`🔒 ${LNM[i]} ${LIC[i]} · เล่นผ่าน${LNM[i-1]}ก่อนนะ`
+      :st?`🎮 เล่นอีกรอบ · ${LNM[i]} ${LIC[i]} ${'⭐'.repeat(st)}`:`🎮 ลองเล่นดู ${LNM[i]} ${LIC[i]} เข้าใจแค่ไหน`;
+    b.style.opacity=open?'':'.6';
+  });
+}
+
+/* mascot reacts on click */
+const moods = ['📕','⚖️','🎒','📏','🦉','🪪','💍'];
+$('mascot').onclick = ()=>{ $('mascot').textContent = moods[Math.floor(Math.random()*moods.length)]; };
+
+/* ============ background bubbles ============ */
+(function(){
+  const colors=['#ff8fd4','#9b8bff','#5fb8ff','#42e0c8','#ffc04e','#76dd6e'];
+  const box=$('bubbles');
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span');
+    const size=20+Math.random()*60;
+    s.style.width=s.style.height=size+'px';
+    s.style.left=Math.random()*100+'%';
+    s.style.background=colors[i%colors.length];
+    s.style.animationDuration=(10+Math.random()*16)+'s';
+    s.style.animationDelay=(-Math.random()*16)+'s';
+    box.appendChild(s);
+  }
+})();
+
+/* ============ คลังข้อ · c[0] = คำตอบถูก · s = ขั้นในบทที่ใช้ตอบข้อนี้ (ตอบผิด → ปุ่มย้อนไปขั้นนั้น) ============ */
+// ทุกตัวเลข/มาตรา มาจากตัวบทฉบับปรับปรุงล่าสุดของกฤษฎีกา — ดู _research/law_sources_08-11-2569.md
+const BANK = {
+  gt1:[
+    {p:'👛', s:'gate-s1', q:'ป้าเก็บกระเป๋าเงินได้แล้วเก็บไว้ใช้เอง บอกตำรวจว่า "ไม่รู้ว่าผิดกฎหมาย" อ้างแบบนี้ได้ไหม', c:['อ้างไม่ได้ · ไม่รู้กฎหมายใช้แก้ตัวไม่ได้','อ้างได้ ถ้าไม่เคยเรียนกฎหมาย','อ้างได้ ถ้าเป็นผู้สูงอายุ','อ้างได้ ถ้าคืนเงินภายหลัง'], w:'มาตรา 64: บุคคลจะแก้ตัวว่าไม่รู้กฎหมายเพื่อให้พ้นจากความรับผิดในทางอาญาไม่ได้'},
+    {p:'⚖️', s:'gate-s1', q:'ถ้าศาลเชื่อว่าคนทำผิดไม่รู้จริง ๆ ว่ากฎหมายห้าม ศาลทำอะไรได้', c:['ลงโทษน้อยกว่าที่กฎหมายกำหนดได้','ปล่อยตัวพ้นผิดทันที','ต้องลงโทษเต็มที่เสมอ','ส่งเรื่องไปศาลแพ่งแทน'], w:'มาตรา 64 ส่วนท้าย: ถ้าศาลเชื่อว่าไม่รู้ ศาลจะลงโทษน้อยกว่าที่กฎหมายกำหนดเพียงใดก็ได้ · แต่ยังผิดอยู่'},
+    {p:'🚓', s:'gate-s2', q:'คดีที่ถามว่า "ทำผิดแล้วรัฐจะลงโทษไหม" เช่น จำคุก ปรับ เป็นกฎหมายฝั่งไหน', c:['อาญา','แพ่ง','ทั้งสองฝั่งไม่เกี่ยว','กฎหมายครอบครัว'], w:'ลงโทษ = ฝั่งอาญา · ส่วนสิทธิและการชดใช้ = ฝั่งแพ่ง'},
+    {p:'💍', s:'gate-s2', q:'เรื่องอายุบรรลุนิติภาวะ การหมั้น และมรดก อยู่ฝั่งไหน', c:['แพ่ง','อาญา','ไม่ใช่เรื่องกฎหมาย','อาญาทั้งหมด'], w:'เป็นเรื่องสิทธิและหน้าที่ของคน · อยู่ในประมวลกฎหมายแพ่งและพาณิชย์'},
+    {p:'🪜', s:'gate-s3', q:'โทษทางอาญาตามมาตรา 18 มีกี่สถาน', c:['5','3','4','6'], w:'ประหารชีวิต · จำคุก · กักขัง · ปรับ · ริบทรัพย์สิน = 5 สถาน'},
+    {p:'🤔', s:'gate-s3', q:'ข้อใด "ไม่ใช่" โทษทางอาญาตามมาตรา 18', c:['ภาคทัณฑ์','กักขัง','ปรับ','ริบทรัพย์สิน'], w:'มาตรา 18 มี 5 สถาน: ประหารชีวิต จำคุก กักขัง ปรับ ริบทรัพย์สิน · ไม่มีภาคทัณฑ์'},
+    {p:'📋', s:'gate-s3', q:'ข้อใดเรียงโทษตามมาตรา 18 ถูกต้อง', c:['ประหารชีวิต จำคุก กักขัง ปรับ ริบทรัพย์สิน','จำคุก ประหารชีวิต ปรับ กักขัง ริบทรัพย์สิน','ประหารชีวิต กักขัง จำคุก ริบทรัพย์สิน ปรับ','ปรับ ริบทรัพย์สิน กักขัง จำคุก ประหารชีวิต'], w:'ลำดับในมาตรา 18: (1) ประหารชีวิต (2) จำคุก (3) กักขัง (4) ปรับ (5) ริบทรัพย์สิน'},
+    {p:'👶', s:'gate-s3', q:'คนที่ทำผิดตอนอายุต่ำกว่า 18 ปี ห้ามใช้โทษใด', c:['ประหารชีวิตและจำคุกตลอดชีวิต','ปรับ','กักขัง','ริบทรัพย์สิน'], w:'มาตรา 18: โทษประหารชีวิตและจำคุกตลอดชีวิต มิให้ใช้กับผู้ที่ทำผิดขณะอายุต่ำกว่าสิบแปดปี'}
+  ],
+  gt2:[
+    {p:'💸', s:'gateL2', q:'เพื่อนยืมเงินแล้วไม่คืน จึงฟ้องให้ใช้เงินคืน เป็นเรื่องฝั่งไหน', c:['แพ่ง · เรียกให้ชดใช้','อาญา · ลักทรัพย์','อาญา · ชิงทรัพย์','ไม่ใช่เรื่องกฎหมาย'], w:'เรียกเงินคืนตามที่ตกลงกันไว้ = เรื่องสิทธิและการชดใช้ = ฝั่งแพ่ง'},
+    {p:'📱', s:'gateL2', q:'แอบเอามือถือของเพื่อนไปขาย เป็นเรื่องฝั่งไหน', c:['อาญา','แพ่งอย่างเดียว','ไม่ผิด ถ้าเป็นเพื่อนกัน','ครอบครัว'], w:'เอาของคนอื่นไปโดยทุจริต = ลักทรัพย์ (มาตรา 334) = ฝั่งอาญา'},
+    {p:'🏠', s:'gateL2', q:'พี่น้องแบ่งมรดกของพ่อแม่ เป็นเรื่องฝั่งไหน', c:['แพ่ง','อาญา','ไม่มีกฎหมายเรื่องนี้','อาญาและแพ่งเสมอ'], w:'มรดก = สิทธิของทายาท = ฝั่งแพ่ง'},
+    {p:'🛍️', s:'gateL2', q:'ร้านออนไลน์รับเงินแล้วไม่ส่งของ เพราะตั้งใจหลอกตั้งแต่แรก', c:['อาญา (ฉ้อโกง) · และเรียกเงินคืนทางแพ่งได้ด้วย','แพ่งอย่างเดียว','ไม่ผิด เพราะผู้ซื้อโอนเอง','ผิดเฉพาะเมื่อยอดเงินสูง'], w:'หลอกจนได้เงินไป = ฉ้อโกง (มาตรา 341) · เรื่องเดียวเกี่ยวได้ทั้งสองฝั่ง'},
+    {p:'⚡', s:'gate-ord', q:'โทษข้อ (1) ในมาตรา 18 คืออะไร', c:['ประหารชีวิต','จำคุก','กักขัง','ริบทรัพย์สิน'], w:'(1) ประหารชีวิต (2) จำคุก (3) กักขัง (4) ปรับ (5) ริบทรัพย์สิน'},
+    {p:'💰', s:'gate-ord', q:'โทษลำดับที่ 4 ในมาตรา 18 คืออะไร', c:['ปรับ','กักขัง','จำคุก','ริบทรัพย์สิน'], w:'(1) ประหารชีวิต (2) จำคุก (3) กักขัง (4) ปรับ (5) ริบทรัพย์สิน'},
+    {p:'🎒', s:'gateL2', q:'ข้อใดเป็นเรื่องฝั่งอาญา', c:['วิ่งราวทรัพย์','บรรลุนิติภาวะ','การหมั้น','ทำพินัยกรรม'], w:'วิ่งราวทรัพย์ (มาตรา 336) เป็นความผิดที่มีโทษ · ที่เหลือเป็นเรื่องแพ่ง'},
+    {p:'🧾', s:'gateL2', q:'ทำไมเรื่องกระเป๋าเงินของป้า จึงเกี่ยวทั้งสองฝั่ง', c:['ป้าอาจถูกลงโทษ และยังต้องคืนเงินให้เจ้าของ','เพราะเงินเกิน 1,000 บาท','เพราะป้าอายุมาก','เพราะเกิดในตลาด'], w:'ฝั่งอาญาถามเรื่องลงโทษ · ฝั่งแพ่งถามว่าเจ้าของได้ของคืนไหม'}
+  ],
+  gt3:[
+    {p:'🧩', s:'gateL3', q:'ใน "ผู้ใดเอาทรัพย์ของผู้อื่น…ไปโดยทุจริต ผู้นั้นกระทำความผิดฐานลักทรัพย์ ต้องระวางโทษ…" ท่อนไหนบอกว่า "ต้องทำอะไรถึงผิด"', c:['เอาทรัพย์ของผู้อื่น…ไปโดยทุจริต','ผู้ใด','ต้องระวางโทษ','ฐานลักทรัพย์'], w:'ท่อน "ทำอะไร" คือด่านที่ต้องผ่านครบ · ผู้ใด = ใครก็ได้ · ฐาน = ชื่อ · ระวางโทษ = โทษ'},
+    {p:'👤', s:'gateL3', q:'คำว่า "ผู้ใด" ในมาตรา หมายถึงใคร', c:['ใครก็ได้ที่ทำแบบนั้น','เฉพาะข้าราชการ','เฉพาะคนไทย','เฉพาะคนที่เคยทำผิดมาก่อน'], w:'"ผู้ใด" = บุคคลใดก็ตามที่ทำตามท่อน "ทำอะไร" ครบ'},
+    {p:'📏', s:'gate-num', q:'"จำคุกไม่เกิน 3 ปี" แปลว่าอะไร', c:['ศาลลงได้ตั้งแต่น้อย ๆ จนถึง 3 ปี','ต้องจำคุก 3 ปีพอดี','จำคุกอย่างน้อย 3 ปี','จำคุกเกิน 3 ปีได้'], w:'"ไม่เกิน" = เพดานสูงสุด ไม่มีขั้นต่ำ · กลับด้านกับ "อย่างน้อย"'},
+    {p:'🔢', s:'gate-num', q:'"จำคุกตั้งแต่ 5 ปีถึง 10 ปี" ศาลลงต่ำสุดได้เท่าไร', c:['5 ปี','ไม่มีขั้นต่ำ','10 ปี','1 ปี'], w:'"ตั้งแต่ 5 ปี" = ขั้นต่ำ 5 ปี · "ถึง 10 ปี" = ขั้นสูง'},
+    {p:'💵', s:'gate-num', q:'"ปรับไม่เกิน 60,000 บาท" กับ "ปรับตั้งแต่ 100,000 ถึง 200,000 บาท" ต่างกันตรงไหน', c:['แบบแรกไม่มีขั้นต่ำ · แบบหลังมีขั้นต่ำ 100,000','เหมือนกันทุกอย่าง','แบบแรกมีขั้นต่ำ 60,000','แบบหลังไม่มีขั้นสูง'], w:'"ไม่เกิน" มีแต่เพดาน · "ตั้งแต่…ถึง…" มีทั้งพื้นและเพดาน'},
+    {p:'🔗', s:'gate-num', q:'"จำคุก… และปรับ…" ต่างจาก "จำคุก… หรือปรับ… หรือทั้งจำทั้งปรับ" อย่างไร', c:['แบบ "และ" เขียนโทษไว้คู่กันทั้งสองอย่าง · แบบ "หรือ" ให้เลือกได้','เหมือนกันทุกอย่าง','แบบ "และ" เบากว่าเสมอ','แบบ "หรือ" ต้องลงทั้งสองอย่างเสมอ'], w:'อ่านคำเชื่อมให้ดี · "และ" = คู่กัน · "หรือ…หรือทั้งจำทั้งปรับ" = เลือกอย่างใดอย่างหนึ่งหรือทั้งสอง'},
+    {p:'⏳', s:'gateL3', q:'ท่อน "ต้องระวางโทษ…" บอกอะไร', c:['โทษที่ศาลลงได้','ชื่อความผิด','วิธีแจ้งความ','ใครเป็นผู้เสียหาย'], w:'"ระวางโทษ" = โทษที่กำหนดไว้สำหรับความผิดนั้น'},
+    {p:'📕', s:'gate-s1', q:'มาตรา 64 (ไม่รู้กฎหมายแก้ตัวไม่ได้) อยู่ในกฎหมายฉบับไหน', c:['ประมวลกฎหมายอาญา','ประมวลกฎหมายแพ่งและพาณิชย์','พระราชบัญญัติบัตรประจำตัวประชาชน','รัฐธรรมนูญ'], w:'มาตรา 64 อยู่ในประมวลกฎหมายอาญา · ใช้กับความรับผิดทางอาญา'}
+  ],
+  pr1:[
+    {p:'☕', s:'prop-s2', q:'แอบหยิบมือถือบนโต๊ะร้านกาแฟตอนเจ้าของเข้าห้องน้ำ ผิดฐานอะไร', c:['ลักทรัพย์','วิ่งราวทรัพย์','ชิงทรัพย์','ฉ้อโกง'], w:'แอบเอาไป เจ้าของไม่ทันเห็น ไม่ใช้กำลัง = ลักทรัพย์ (มาตรา 334)'},
+    {p:'🛵', s:'prop-s2', q:'กระชากสร้อยคอต่อหน้า แล้ววิ่งหนี ผิดฐานอะไร', c:['วิ่งราวทรัพย์','ลักทรัพย์ธรรมดา','ปล้นทรัพย์','กรรโชก'], w:'ลักทรัพย์โดยฉกฉวยเอาซึ่งหน้า = วิ่งราวทรัพย์ (มาตรา 336)'},
+    {p:'🔪', s:'prop-s2', q:'ใช้มีดจี้ให้ส่งกระเป๋ามาเดี๋ยวนั้น ผิดฐานอะไร', c:['ชิงทรัพย์','วิ่งราวทรัพย์','กรรโชก','ยักยอก'], w:'ลักทรัพย์โดยใช้กำลังหรือขู่ว่าในทันใดนั้นจะใช้กำลัง = ชิงทรัพย์ (มาตรา 339)'},
+    {p:'👥', s:'prop-s2', q:'คนร้าย 3 คนร่วมกันทำร้ายเพื่อเอากระเป๋าไป ผิดฐานอะไร', c:['ปล้นทรัพย์','ชิงทรัพย์','วิ่งราวทรัพย์','ลักทรัพย์'], w:'ชิงทรัพย์โดยร่วมกันตั้งแต่สามคนขึ้นไป = ปล้นทรัพย์ (มาตรา 340)'},
+    {p:'🔑', s:'prop-s1', q:'ลักทรัพย์ (มาตรา 334) ต้องมีอะไรบ้าง', c:['เอาทรัพย์ของผู้อื่นไป โดยทุจริต','ต้องใช้อาวุธ','ต้องทำตอนกลางคืน','ต้องมีคนร้าย 2 คนขึ้นไป'], w:'"ผู้ใดเอาทรัพย์ของผู้อื่น…ไปโดยทุจริต ผู้นั้นกระทำความผิดฐานลักทรัพย์"'},
+    {p:'☂️', s:'prop-s3', q:'หยิบร่มของคนอื่นไป เพราะนึกว่าเป็นร่มของตัวเอง ผิดลักทรัพย์ไหม', c:['ไม่ผิด เพราะไม่รู้ว่าเป็นของคนอื่น จึงไม่มีเจตนา','ผิด เพราะของไม่ใช่ของตัวเอง','ผิด แต่ลดโทษกึ่งหนึ่ง','ผิดฐานวิ่งราว'], w:'มาตรา 59: ถ้าไม่รู้ข้อเท็จจริงที่เป็นส่วนของความผิด จะถือว่าตั้งใจไม่ได้'},
+    {p:'🏃', s:'prop-s2', q:'ชิงทรัพย์ต่างจากวิ่งราวทรัพย์ตรงไหน', c:['ชิงทรัพย์ใช้กำลังหรือขู่ว่าจะทำร้ายทันที · วิ่งราวแค่ฉกต่อหน้า','วิ่งราวต้องมี 3 คน','ชิงทรัพย์ต้องทำกลางคืน','ไม่ต่างกัน'], w:'ตัวแยกคือ "กำลังประทุษร้าย หรือขู่ว่าในทันใดนั้นจะใช้กำลัง"'},
+    {p:'3️⃣', s:'prop-s2', q:'ปล้นทรัพย์ ต้องร่วมกันกี่คนขึ้นไป', c:['3 คน','2 คน','4 คน','5 คน'], w:'มาตรา 340: ร่วมกันกระทำความผิดด้วยกันตั้งแต่สามคนขึ้นไป'}
+  ],
+  pr2:[
+    {p:'📦', s:'propL2', q:'ฝากมือถือไว้กับเพื่อน เพื่อนเอาไปขายเอง ผิดฐานอะไร', c:['ยักยอก','ลักทรัพย์','ฉ้อโกง','วิ่งราวทรัพย์'], w:'ของอยู่ในความครอบครองของเพื่อนแล้ว แล้วเบียดบังเป็นของตัว = ยักยอก (มาตรา 352)'},
+    {p:'🛍️', s:'propL2', q:'ร้านออนไลน์ตั้งใจหลอกตั้งแต่แรก ให้โอนเงิน แล้วไม่ส่งของ ผิดฐานอะไร', c:['ฉ้อโกง','ลักทรัพย์','ยักยอก','ชิงทรัพย์'], w:'หลอกด้วยข้อความเท็จ จนได้ทรัพย์สินไป = ฉ้อโกง (มาตรา 341)'},
+    {p:'☎️', s:'propL2', q:'โทรมาอ้างเป็นเจ้าหน้าที่ธนาคาร หลอกให้โอนเงิน ผิดฐานใดเป็นหลัก', c:['ฉ้อโกง','ลักทรัพย์','วิ่งราวทรัพย์','รับของโจร'], w:'เหยื่อโอนเงินให้เองเพราะถูกหลอก = ฉ้อโกง'},
+    {p:'😠', s:'propL2', q:'ขู่ว่า "ถ้าพรุ่งนี้ไม่จ่ายเงิน จะมาทำร้าย" จนอีกฝ่ายยอมจ่าย ผิดฐานอะไร', c:['กรรโชก','ชิงทรัพย์','ปล้นทรัพย์','ฉ้อโกง'], w:'ขู่เข็ญจนผู้ถูกขู่ยอมให้ประโยชน์ในลักษณะที่เป็นทรัพย์สิน = กรรโชก (มาตรา 337)'},
+    {p:'🗡️', s:'propL2', q:'"ส่งกระเป๋ามาเดี๋ยวนี้ ไม่งั้นแทง" แล้วได้กระเป๋าไป ผิดฐานอะไร', c:['ชิงทรัพย์','กรรโชก','ฉ้อโกง','ยักยอก'], w:'ขู่ว่า "ในทันใดนั้น" จะใช้กำลัง เพื่อให้ยื่นทรัพย์ให้ = ชิงทรัพย์ (มาตรา 339)'},
+    {p:'📱', s:'prop-rk', q:'ซื้อมือถือราคาถูกผิดปกติ โดยรู้ว่าเป็นของที่ขโมยมา ผิดฐานอะไร', c:['รับของโจร','ไม่ผิด เพราะจ่ายเงินซื้อ','ลักทรัพย์','ยักยอก'], w:'ซื้อทรัพย์ที่ได้มาจากการลักทรัพย์ = รับของโจร (มาตรา 357)'},
+    {p:'🔍', s:'propL2', q:'ยักยอกต่างจากลักทรัพย์ตรงไหน', c:['ยักยอก: ของอยู่ในมือคนทำผิดอยู่แล้ว · ลัก: เอาไปจากคนอื่น','ยักยอกต้องใช้กำลัง','ลักทรัพย์ต้องถูกหลอก','ไม่ต่างกัน'], w:'ยักยอก = "ครอบครองทรัพย์…เบียดบังเอา" · ลักทรัพย์ = "เอาทรัพย์ของผู้อื่น…ไป"'},
+    {p:'🌳', s:'propL2', q:'ต้นไม้แยกฐาน ควรถามข้อแรกว่าอะไร', c:['ตอนนั้นของอยู่ในมือใคร','คนร้ายใส่เสื้อสีอะไร','เกิดเหตุกี่โมง','ของราคาเท่าไร'], w:'ของอยู่กับเจ้าของ → ลัก/วิ่งราว/ชิง/ปล้น · อยู่ในมือคนทำผิดแล้ว → ยักยอก · เจ้าของยื่นให้เพราะถูกหลอก → ฉ้อโกง'}
+  ],
+  pr3:[
+    {p:'🪜', s:'propL3', q:'เรียงจากโทษจำคุกสูงสุด เบา → หนัก ข้อใดถูก', c:['ลักทรัพย์ → วิ่งราว → ชิงทรัพย์ → ปล้นทรัพย์','วิ่งราว → ลักทรัพย์ → ปล้น → ชิง','ชิงทรัพย์ → ลักทรัพย์ → วิ่งราว → ปล้น','ปล้นทรัพย์ → ชิง → วิ่งราว → ลัก'], w:'ไม่เกิน 3 ปี → ไม่เกิน 5 ปี → 5 ถึง 10 ปี → 10 ถึง 15 ปี'},
+    {p:'⛓️', s:'propL3', q:'ชิงทรัพย์ (มาตรา 339) จำคุกต่ำสุดกี่ปี', c:['5 ปี','ไม่มีขั้นต่ำ','3 ปี','10 ปี'], w:'จำคุกตั้งแต่ห้าปีถึงสิบปี และปรับตั้งแต่ 100,000 ถึง 200,000 บาท'},
+    {p:'📕', s:'propL3', q:'โทษลักทรัพย์ตามมาตรา 334 คือข้อใด', c:['จำคุกไม่เกิน 3 ปี และปรับไม่เกิน 60,000 บาท','จำคุกไม่เกิน 5 ปี และปรับไม่เกิน 100,000 บาท','จำคุกตั้งแต่ 5 ถึง 10 ปี','ปรับอย่างเดียว ไม่เกิน 10,000 บาท'], w:'มาตรา 334: จำคุกไม่เกินสามปี และปรับไม่เกินหกหมื่นบาท'},
+    {p:'🤝', s:'propL3', q:'ความผิดใด "ยอมความได้"', c:['ยักยอก','ลักทรัพย์','ชิงทรัพย์','ปล้นทรัพย์'], w:'มาตรา 356: ความผิดฐานยักยอกเป็นความผิดอันยอมความได้'},
+    {p:'🧾', s:'propL3', q:'ฉ้อโกงยอมความได้ไหม', c:['ได้ ยกเว้นฉ้อโกงประชาชน (มาตรา 343)','ไม่ได้ทุกกรณี','ได้เฉพาะยอดไม่เกิน 10,000 บาท','ได้เฉพาะคนในครอบครัว'], w:'มาตรา 348: ความผิดในหมวดนี้ นอกจากความผิดตามมาตรา 343 เป็นความผิดอันยอมความได้'},
+    {p:'👛', s:'prop-yk', q:'เก็บกระเป๋าเงินได้ แล้วเบียดบังไว้เป็นของตัว โทษเทียบกับยักยอกธรรมดาเป็นอย่างไร', c:['เพียงกึ่งหนึ่ง','เท่ากัน','หนักขึ้นกึ่งหนึ่ง','ไม่มีโทษ'], w:'มาตรา 352 วรรคสอง: ทรัพย์สินหายที่เก็บได้ ผู้กระทำต้องระวางโทษแต่เพียงกึ่งหนึ่ง'},
+    {p:'💵', s:'prop-yk', q:'แม่ค้าทอนเงินเกินมา 500 บาทเพราะเข้าใจผิด เรารู้แต่เก็บไว้เป็นของตัว ผิดฐานอะไร', c:['ยักยอก (โทษกึ่งหนึ่ง)','ไม่ผิด เพราะแม่ค้ายื่นให้เอง','ลักทรัพย์','ชิงทรัพย์'], w:'ทรัพย์ตกมาอยู่ในความครอบครองเพราะผู้อื่นส่งมอบให้โดยสำคัญผิด = ยักยอก โทษเพียงกึ่งหนึ่ง (มาตรา 352 วรรคสอง)'},
+    {p:'💡', s:'propL3', q:'"ยอมความได้" หมายความว่าอะไร', c:['ผู้เสียหายกับคนทำผิดตกลงกันได้ แล้วคดีจบได้','ไม่ต้องรับโทษตั้งแต่แรก','ต้องจ่ายค่าปรับเท่านั้น','ตำรวจตัดสินเองได้'], w:'ความผิดอันยอมความได้ ผู้เสียหายตกลงยอมความกันได้ · ส่วนความผิดที่ยอมความไม่ได้ คดียังเดินต่อแม้ตกลงกัน'}
+  ],
+  ag1:[
+    {p:'🪪', s:'age-s1', q:'คนสัญชาติไทยต้องมีบัตรประจำตัวประชาชนเมื่ออายุเท่าไร', c:['7 ปีบริบูรณ์','15 ปีบริบูรณ์','18 ปีบริบูรณ์','20 ปีบริบูรณ์'], w:'พ.ร.บ.บัตรประจำตัวประชาชน มาตรา 5: อายุตั้งแต่เจ็ดปีบริบูรณ์ แต่ไม่เกินเจ็ดสิบปีบริบูรณ์'},
+    {p:'🎓', s:'age-s1', q:'บุคคลบรรลุนิติภาวะเมื่ออายุเท่าไร', c:['20 ปีบริบูรณ์','18 ปีบริบูรณ์','15 ปีบริบูรณ์','21 ปีบริบูรณ์'], w:'ป.พ.พ. มาตรา 19: บรรลุนิติภาวะเมื่อมีอายุยี่สิบปีบริบูรณ์'},
+    {p:'💍', s:'age-s1', q:'การหมั้นทำได้เมื่ออายุเท่าไร', c:['18 ปีบริบูรณ์ ทั้งสองฝ่าย','17 ปีบริบูรณ์','20 ปีบริบูรณ์','15 ปีบริบูรณ์'], w:'ป.พ.พ. มาตรา 1435 (ฉบับปัจจุบัน): บุคคลทั้งสองฝ่ายมีอายุสิบแปดปีบริบูรณ์แล้ว'},
+    {p:'📜', s:'age-s1', q:'ผู้เยาว์ทำพินัยกรรมได้เมื่ออายุเท่าไร', c:['15 ปีบริบูรณ์','7 ปีบริบูรณ์','18 ปีบริบูรณ์','20 ปีบริบูรณ์'], w:'ป.พ.พ. มาตรา 25: ผู้เยาว์อาจทำพินัยกรรมได้เมื่อมีอายุสิบห้าปีบริบูรณ์'},
+    {p:'🚸', s:'age-s2', q:'ช่วงอายุแรกสุดของมาตรา 73: เด็กอายุไม่เกินกี่ปี ทำผิดแล้วไม่ต้องรับโทษ และพนักงานสอบสวนส่งตัวให้เจ้าหน้าที่คุ้มครองเด็ก', c:['12 ปี','10 ปี','15 ปี','7 ปี'], w:'ป.อ. มาตรา 73 (แก้ปี 2565): เด็กอายุยังไม่เกินสิบสองปี ไม่ต้องรับโทษ'},
+    {p:'👵', s:'age-s1', q:'อายุเกินเท่าไร ไม่บังคับต้องมีบัตรประชาชน (แต่จะขอมีก็ได้)', c:['70 ปี','60 ปี','80 ปี','65 ปี'], w:'มาตรา 5: ผู้ซึ่งมีอายุเกินเจ็ดสิบปี จะขอมีบัตรก็ได้'},
+    {p:'⚖️', s:'age-s2', q:'ผู้ทำผิดอายุตั้งแต่ 18 ปีแต่ยังไม่เกิน 20 ปี ศาลลดโทษได้เท่าไร', c:['หนึ่งในสาม หรือกึ่งหนึ่ง ถ้าศาลเห็นสมควร','ต้องลดครึ่งหนึ่งเสมอ','ลดไม่ได้','ไม่ต้องรับโทษ'], w:'ป.อ. มาตรา 76: ถ้าศาลเห็นสมควร จะลดมาตราส่วนโทษลงหนึ่งในสามหรือกึ่งหนึ่งก็ได้'},
+    {p:'💒', s:'age-s1', q:'การสมรสทำได้เมื่ออายุเท่าไร', c:['18 ปีบริบูรณ์ทั้งสองฝ่าย · ต่ำกว่านั้นต้องให้ศาลอนุญาต','17 ปี ไม่ต้องขออนุญาต','20 ปีเท่านั้น','15 ปี ถ้าพ่อแม่ยอม'], w:'ป.พ.พ. มาตรา 1448: อายุสิบแปดปีบริบูรณ์ · ถ้ามีเหตุอันสมควร ศาลอาจอนุญาตให้สมรสก่อนนั้นได้'}
+  ],
+  ag2:[
+    {p:'🧒', s:'age-s2', q:'เด็กอายุ 11 ปี ขโมยของในร้าน ผลทางอาญาเป็นอย่างไร', c:['ไม่ต้องรับโทษ · ส่งให้พนักงานเจ้าหน้าที่คุ้มครองเด็ก','ต้องรับโทษครึ่งหนึ่ง','ต้องจำคุกเหมือนผู้ใหญ่','พ่อแม่ต้องติดคุกแทน'], w:'มาตรา 73: เด็กอายุยังไม่เกิน 12 ปี ไม่ต้องรับโทษ · พนักงานสอบสวนส่งตัวให้ดูแลคุ้มครองสวัสดิภาพ'},
+    {p:'🛹', s:'age-s2', q:'เด็กอายุ 14 ปี ลักทรัพย์ ศาลทำอะไรได้', c:['ไม่ลงโทษ แต่ว่ากล่าวตักเตือน หรือมอบให้พ่อแม่ดูแลภายใต้ข้อกำหนดได้','ลงโทษจำคุกเต็มที่','ลดโทษกึ่งหนึ่งเสมอ','ทำอะไรไม่ได้เลย'], w:'มาตรา 74: เด็กอายุกว่า 12 ปีแต่ยังไม่เกิน 15 ปี ไม่ต้องรับโทษ แต่ศาลมีอำนาจดำเนินการ เช่น ว่ากล่าวตักเตือน'},
+    {p:'🧑', s:'age-s2', q:'วัยรุ่นอายุ 16 ปีทำผิด ถ้าศาลเห็นสมควรลงโทษ จะเป็นอย่างไร', c:['ลดมาตราส่วนโทษลงกึ่งหนึ่ง','ลงโทษเต็มเหมือนผู้ใหญ่','ไม่ต้องรับโทษเลย','เพิ่มโทษกึ่งหนึ่ง'], w:'มาตรา 75: อายุกว่า 15 ปีแต่ต่ำกว่า 18 ปี ถ้าศาลเห็นสมควรลงโทษ ให้ลดมาตราส่วนโทษลงกึ่งหนึ่ง'},
+    {p:'💑', s:'ageL3', q:'คู่รักอายุ 17 ปีทั้งคู่ อยากสมรส ทำได้ไหม', c:['ทำได้ ถ้าศาลอนุญาต (ต้องมีเหตุอันสมควร)','ทำได้เลย','ทำได้ถ้าพ่อแม่เซ็นยินยอมอย่างเดียว','ทำไม่ได้เด็ดขาดจนอายุ 20'], w:'มาตรา 1448: สมรสได้เมื่ออายุ 18 ปีบริบูรณ์ · ถ้ามีเหตุอันสมควร ศาลอาจอนุญาตให้สมรสก่อนนั้นได้'},
+    {p:'🎉', s:'ageL3', q:'อายุ 19 ปี สมรสถูกต้องตามกฎหมาย ผลคืออะไร', c:['บรรลุนิติภาวะทันที','ยังเป็นผู้เยาว์จนอายุ 20','ต้องรออายุ 21','ไม่มีผลอะไร'], w:'ป.พ.พ. มาตรา 20: ผู้เยาว์ย่อมบรรลุนิติภาวะเมื่อทำการสมรส ตามมาตรา 1448'},
+    {p:'💍', s:'ageL2', q:'อายุ 18 ปีบริบูรณ์ จะหมั้น ต้องทำอย่างไร', c:['หมั้นได้ แต่ยังเป็นผู้เยาว์ ต้องได้รับความยินยอมจากพ่อแม่ (หรือผู้ปกครอง)','หมั้นได้เลย ไม่ต้องถามใคร','หมั้นไม่ได้จนอายุ 20','ต้องขออนุญาตศาลก่อน'], w:'มาตรา 1435 อายุ 18 หมั้นได้ · มาตรา 1436 ผู้เยาว์จะทำการหมั้นได้ต้องได้รับความยินยอม (เช่น บิดาและมารดา)'},
+    {p:'🗓️', s:'ageL3', q:'อายุครบ 7 ปีบริบูรณ์ ต้องยื่นขอมีบัตรภายในกี่วัน', c:['60 วัน','30 วัน','90 วัน','1 ปี'], w:'พ.ร.บ.บัตรฯ มาตรา 6: ภายในกำหนดหกสิบวันนับแต่วันที่อายุครบเจ็ดปีบริบูรณ์'},
+    {p:'❌', s:'ageL3', q:'หมั้นกันตอนอายุ 16 ปี การหมั้นนั้นเป็นอย่างไร', c:['เป็นโมฆะ','สมบูรณ์ ถ้าพ่อแม่ยอม','สมบูรณ์ ถ้ามีของหมั้น','ต้องรอศาลตัดสิน'], w:'มาตรา 1435 วรรคสอง: การหมั้นที่ฝ่าฝืน (อายุไม่ถึง 18) เป็นโมฆะ'}
+  ],
+  ag3:[
+    {p:'📚', s:'age-s3', q:'หนังสือติวเก่าเขียนว่า "หมั้นได้เมื่ออายุ 17 ปี" ตอนนี้ยังถูกไหม', c:['ไม่ถูก · ปัจจุบันคือ 18 ปีบริบูรณ์ทั้งสองฝ่าย','ยังถูกอยู่','ไม่ถูก · ปัจจุบันคือ 20 ปี','ไม่ถูก · ปัจจุบันคือ 15 ปี'], w:'แก้โดย พ.ร.บ.แก้ไขเพิ่มเติม ป.พ.พ. (ฉบับที่ 24) พ.ศ. 2567 ที่เรียกกันว่าสมรสเท่าเทียม · ข้อสอบใช้ข้อมูลปัจจุบัน'},
+    {p:'📖', s:'age-s3', q:'หนังสือเก่าเขียนว่าช่วงอายุแรกสุดของมาตรา 73 (ไม่ต้องรับโทษ · ส่งให้เจ้าหน้าที่คุ้มครองเด็ก) คือ "ไม่เกิน 10 ปี" ปัจจุบันเป็นเท่าไร', c:['ไม่เกิน 12 ปี','ไม่เกิน 10 ปี เหมือนเดิม','ไม่เกิน 14 ปี','ไม่เกิน 7 ปี'], w:'ป.อ. มาตรา 73 แก้โดยฉบับที่ 29 พ.ศ. 2565 เป็น "ยังไม่เกินสิบสองปี"'},
+    {p:'✍️', s:'ageL3', q:'ผู้เยาว์จะทำนิติกรรม เช่น ทำสัญญาซื้อขาย ต้องทำอย่างไร', c:['ได้รับความยินยอมของผู้แทนโดยชอบธรรมก่อน','ทำเองได้เลย','ต้องรออายุ 25','ต้องให้ศาลทำแทน'], w:'ป.พ.พ. มาตรา 21: ผู้เยาว์จะทำนิติกรรมใด ๆ ต้องได้รับความยินยอมของผู้แทนโดยชอบธรรมก่อน'},
+    {p:'🪪', s:'ageL3', q:'บัตรประจำตัวประชาชนมีอายุกี่ปี', c:['8 ปี นับแต่วันเกิดที่ถึงหลังวันออกบัตร','5 ปี นับแต่วันออกบัตร','10 ปี','ใช้ได้ตลอดชีวิตทุกคน'], w:'พ.ร.บ.บัตรฯ มาตรา 6 ทวิ: มีอายุแปดปีนับแต่วันเกิดของผู้ถือบัตรที่ถึงกำหนดภายหลังจากวันออกบัตร'},
+    {p:'🛤️', s:'ageL3', q:'บรรลุนิติภาวะได้กี่ทาง', c:['2 ทาง: อายุครบ 20 ปี · สมรสถูกต้องตามมาตรา 1448','1 ทาง: อายุ 20 ปีเท่านั้น','3 ทาง: อายุ 18 · 20 · สมรส','ขึ้นกับพ่อแม่'], w:'ป.พ.พ. มาตรา 19 และมาตรา 20'},
+    {p:'⚖️', s:'ageL3', q:'ทำผิดตอนอายุต่ำกว่า 18 ปี ในความผิดที่มีโทษประหารชีวิต จะเป็นอย่างไร', c:['ให้ถือว่าเปลี่ยนเป็นจำคุก 50 ปี','ยังประหารได้','จำคุกตลอดชีวิต','ไม่ต้องรับโทษ'], w:'ป.อ. มาตรา 18 วรรคสาม: ให้ถือว่าระวางโทษดังกล่าวได้เปลี่ยนเป็นระวางโทษจำคุกห้าสิบปี'},
+    {p:'📜', s:'age-s1', q:'อายุ 15 ปีบริบูรณ์ ทำเรื่องใดได้ตามที่เรียนมา', c:['ทำพินัยกรรม','สมรสโดยไม่ต้องขออนุญาต','หมั้น','บรรลุนิติภาวะ'], w:'ป.พ.พ. มาตรา 25 · หมั้นและสมรสต้อง 18 · บรรลุนิติภาวะ 20'},
+    {p:'✅', s:'age-s3', q:'ข้อใดเป็นข้อมูลปัจจุบัน', c:['หมั้นได้เมื่ออายุ 18 ปีบริบูรณ์','หมั้นได้เมื่ออายุ 17 ปี','ช่วงอายุแรกสุดของมาตรา 73 คือไม่เกิน 10 ปี','บรรลุนิติภาวะเมื่ออายุ 18 ปี'], w:'หมั้น 18 (มาตรา 1435) · ช่วงแรกสุดของมาตรา 73 คือไม่เกิน 12 · บรรลุนิติภาวะ 20'}
+  ]
+};
+const LEVELS = [
+  {ch:'gate', id:'gt1', icon:'🌱', name:'ด่าน 1 · เมล็ด', sub:'ไม่รู้กฎหมาย · 2 ฝั่ง · โทษ 5 สถาน', cls:'c6'},
+  {ch:'gate', id:'gt2', icon:'🌿', name:'ด่าน 2 · ต้นกล้า', sub:'แยกอาญา · แพ่ง', cls:'c5'},
+  {ch:'gate', id:'gt3', icon:'🌳', name:'ด่าน 3 · ต้นไม้ใหญ่', sub:'อ่านประโยคกฎหมาย', cls:'c2'},
+  {ch:'prop', id:'pr1', icon:'🌱', name:'ด่าน 1 · เมล็ด', sub:'ลัก · วิ่งราว · ชิง · ปล้น', cls:'c6'},
+  {ch:'prop', id:'pr2', icon:'🌿', name:'ด่าน 2 · ต้นกล้า', sub:'ยักยอก · ฉ้อโกง · กรรโชก · รับของโจร', cls:'c5'},
+  {ch:'prop', id:'pr3', icon:'🌳', name:'ด่าน 3 · ต้นไม้ใหญ่', sub:'บันไดโทษ · ยอมความได้', cls:'c2'},
+  {ch:'age', id:'ag1', icon:'🌱', name:'ด่าน 1 · เมล็ด', sub:'หมุดอายุ · เด็กทำผิด', cls:'c6'},
+  {ch:'age', id:'ag2', icon:'🌿', name:'ด่าน 2 · ต้นกล้า', sub:'เรื่องจริงตามอายุ', cls:'c5'},
+  {ch:'age', id:'ag3', icon:'🌳', name:'ด่าน 3 · ต้นไม้ใหญ่', sub:'ข้อมูลใหม่ · บรรลุนิติภาวะ · บัตร', cls:'c2'}
+];
+const CHS = {
+  gate:{n:'ทำไมต้องรู้กฎหมาย', i:'🚪', scr:'gate'},
+  prop:{n:'ของหาย ผิดฐานอะไร', i:'🎒', scr:'prop'},
+  age:{n:'อายุกับกฎหมาย', i:'📏', scr:'age'}
+};
+
+/* ============ ตัวช่วยกลาง ============ */
+const ln = (m,r,cls='') => `<div class="ln ${cls}"><span class="m">${m}</span>${r?`<span class="r">${r}</span>`:''}</div>`;
+const tabOn = btn => { if(!btn) return; btn.parentNode.querySelectorAll('.tab').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); };
+
+// การ์ดเรื่อง → เลือกคำตอบ → เหตุผล · set = [{p, q, c:[[ข้อความ, ถูก?, เหตุผล], …]}]
+const QS={};
+function qsMount(id,set){ QS[id]={set,i:0}; qsShow(id); }
+function qsShow(id){
+  const S=QS[id], P=S.set[S.i], ord=shuffle(P.c.map((_,j)=>j));
+  // ชุดเดียว = เรื่องเล่าอยู่ในกล่องด้านบนแล้ว แสดงแค่คำถาม (ไม่ซ้ำภาพ)
+  $(id).innerHTML=(S.set.length>1?`<div class="story"><div class="pic">${P.p}</div><p>${P.q}</p><p class="hint">เรื่องที่ ${S.i+1} / ${S.set.length}</p></div>`:`<p class="ask">${P.q}</p>`)+`
+    <div class="chs">${ord.map(j=>`<button class="tab" onclick="qsPick('${id}',${j},this)">${P.c[j][0]}</button>`).join('')}</div>
+    <div class="info" id="${id}-fb">เลือกคำตอบที่คิดว่าถูก</div>`;
+}
+function qsPick(id,j,btn){
+  const S=QS[id], P=S.set[S.i], [,ok,why]=P.c[j], last=S.i===S.set.length-1;
+  btn.classList.add(ok?'on':'bad');
+  if(ok) btn.parentNode.querySelectorAll('button').forEach(b=>b.disabled=true);
+  $(id+'-fb').innerHTML=(ok?'✅ ถูกต้อง · ':'❌ ยังไม่ใช่ · ')+why
+    +(ok?(last?(S.set.length>1?'<br>🎉 ครบทุกเรื่องแล้ว':''):`<br><button class="btn alt" onclick="qsNext('${id}')">👉 เรื่องต่อไป</button>`):'<br>ลองเลือกใหม่อีกครั้ง');
+  if(ok&&last) miniConfetti();
+}
+function qsNext(id){ QS[id].i++; qsShow(id); }
+
+/* ============ บท 0 · ทำไมต้องรู้กฎหมาย ============ */
+const GQ1=[{p:'👛', q:'ป้าบอกว่า "ไม่รู้ว่าผิดกฎหมาย" · ข้ออ้างนี้ทำให้พ้นผิดไหม', c:[
+  ['พ้นผิดไม่ได้ · ไม่รู้กฎหมายใช้แก้ตัวไม่ได้',true,'ประมวลกฎหมายอาญา มาตรา 64 · แต่ถ้าศาลเชื่อว่าไม่รู้จริง ศาลลงโทษน้อยลงได้'],
+  ['พ้นผิดได้ เพราะไม่เคยเรียนกฎหมาย',false,'ถ้าอ้างแบบนี้ได้ ใครก็อ้างได้หมด · กฎหมายจึงไม่ยอมให้อ้าง'],
+  ['พ้นผิดได้ ถ้าคืนเงินภายหลัง',false,'คืนเงินภายหลังไม่ได้ทำให้การกระทำตอนแรกหายไป']]}];
+const PUN5=[['(1) ประหารชีวิต',''],['(2) จำคุก',''],['(3) กักขัง','กักตัวในสถานที่กักขังที่ไม่ใช่เรือนจำ สถานีตำรวจ หรือที่ควบคุมผู้ต้องหา (ม.24)'],['(4) ปรับ',''],['(5) ริบทรัพย์สิน','ทรัพย์สินที่ศาลพิพากษาให้ริบ ตกเป็นของแผ่นดิน (ม.35)']];
+let pun5I=0;
+function pun5Next(){
+  if(pun5I>=PUN5.length){ pun5I=0; }
+  pun5I++;
+  $('pun5').innerHTML=PUN5.slice(0,pun5I).map(r=>ln(r[0],r[1])).join('');
+  $('pun5b').textContent=pun5I>=PUN5.length?'🔁 ดูใหม่ตั้งแต่ต้น':'👉 ดูขั้นต่อไป';
+}
+const GQ2=[
+  {p:'💸', q:'เพื่อนยืมเงิน 5,000 บาทแล้วไม่คืน · จะฟ้องเรียกเงินคืน', c:[['🤝 แพ่ง',true,'เรียกให้ชดใช้ตามที่ตกลงกัน = เรื่องสิทธิ = ฝั่งแพ่ง'],['🚓 อาญา',false,'ไม่ได้ถามว่าจะลงโทษใคร แต่ถามว่าจะได้เงินคืนไหม']]},
+  {p:'📱', q:'แอบเอามือถือเพื่อนไปขาย', c:[['🚓 อาญา',true,'เอาของคนอื่นไปโดยทุจริต = ลักทรัพย์ มีโทษ'],['🤝 แพ่ง',false,'เรื่องนี้มีโทษตามประมวลกฎหมายอาญา']]},
+  {p:'🏠', q:'พี่น้องตกลงแบ่งมรดกที่ดินของพ่อ', c:[['🤝 แพ่ง',true,'มรดก = สิทธิของทายาท = ฝั่งแพ่ง'],['🚓 อาญา',false,'ไม่มีใครทำผิด แค่แบ่งสิทธิกัน']]},
+  {p:'🛵', q:'กระชากกระเป๋าคนเดินถนนแล้วขี่รถหนี', c:[['🚓 อาญา',true,'ฉกฉวยเอาซึ่งหน้า = วิ่งราวทรัพย์ มีโทษ'],['🤝 แพ่ง',false,'เรื่องนี้รัฐลงโทษได้ จึงเป็นอาญา']]},
+  {p:'💍', q:'อายุเท่าไรจึงหมั้นได้', c:[['🤝 แพ่ง',true,'อยู่ในประมวลกฎหมายแพ่งและพาณิชย์ เรื่องครอบครัว'],['🚓 อาญา',false,'ไม่มีการลงโทษ เป็นเรื่องสิทธิ']]}
+];
+// เรียงโทษ 5 สถานเอง
+let ordPick=[];
+function ordDraw(){
+  const all=PUN5.map(r=>r[0].replace(/^\(\d\) /,'')), left=shuffle(all.filter(x=>!ordPick.includes(x)));
+  const done=ordPick.length===all.length;
+  $('ord5').innerHTML=`<div class="lines">${ordPick.map((x,i)=>ln(`(${i+1}) ${x}`,'')).join('')||'<p class="hint">ยังไม่ได้เลือก</p>'}</div>
+    <div class="chs row2">${left.map(x=>`<button class="tab" onclick="ordTap('${x}')">${x}</button>`).join('')}</div>
+    <div class="info" id="ord5fb">${done?'🎉 เรียงถูกครบ 5 สถาน':'แตะโทษที่หนักที่สุดที่ยังเหลือ'}</div>
+    ${done?'<div class="center"><button class="btn alt" onclick="ordPick=[];ordDraw()">🔁 เล่นใหม่</button></div>':''}`;
+  if(done) miniConfetti();
+}
+function ordTap(x){
+  const want=PUN5[ordPick.length][0].replace(/^\(\d\) /,'');
+  if(x===want){ ordPick.push(x); ordDraw(); }
+  else $('ord5fb').innerHTML=`❌ ยังไม่ใช่ · <b>${x}</b> อยู่ลำดับหลังกว่านี้ในมาตรา 18 · ลองเลื่อนขึ้นไปดูขั้นที่ 3`;
+}
+// อ่านประโยคมาตรา 334
+const P334=[
+  ['ผู้ใด','who','ใครก็ได้ที่ทำแบบนี้ · ไม่จำกัดอาชีพหรือเพศ'],
+  ['เอาทรัพย์ของผู้อื่น หรือที่ผู้อื่นเป็นเจ้าของรวมอยู่ด้วยไป','act','<b>ทำอะไร (1)</b> · ต้องเป็นของคนอื่น หรือของที่คนอื่นเป็นเจ้าของร่วมด้วย · และต้อง "เอาไป"'],
+  ['โดยทุจริต','act','<b>ทำอะไร (2)</b> · ต้องตั้งใจเอาไปเป็นของตัว ทั้งที่รู้ว่าไม่ใช่ของตัว'],
+  ['ผู้นั้นกระทำความผิดฐานลักทรัพย์','name','<b>ชื่อความผิด</b> · ผ่านด่าน "ทำอะไร" ครบ จึงได้ชื่อนี้'],
+  ['ต้องระวางโทษจำคุกไม่เกินสามปี และปรับไม่เกินหกหมื่นบาท','pen','<b>โทษ</b> · จำคุกไม่เกิน 3 ปี และปรับไม่เกิน 60,000 บาท']
+];
+function parts334(){ $('parts334').innerHTML=P334.map((p,i)=>`<button class="lp-${p[1]}" onclick="part334(${i},this)">${p[0]}</button>`).join(' '); }
+function part334(i,btn){ $('parts334').querySelectorAll('button').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); $('parts334fb').innerHTML=P334[i][2]; }
+
+/* ============ บท 1 · ของหาย ผิดฐานอะไร ============ */
+const TREE={
+  q1:{q:'ของหลุดจากมือเจ้าของเพราะอะไร?', a:[['ถูกเอาไป หรือถูกบังคับให้ยื่นให้เดี๋ยวนั้น','q2'],['อยู่ในมือคนทำผิดอยู่แล้ว (ฝากไว้ · เก็บได้)','yak'],['เจ้าของยื่นให้เอง เพราะถูกหลอก','cho'],['เจ้าของยอมให้ เพราะถูกขู่ว่าจะทำร้ายวันหลัง','kan']]},
+  q2:{q:'เอาไปแบบไหน?', a:[['แอบเอาไป เจ้าของไม่ทันเห็น','lak'],['ฉกฉวยต่อหน้า แล้วหนีไป','wing'],['ใช้กำลัง หรือขู่ว่าจะทำร้ายเดี๋ยวนั้น (เอาไปเอง หรือสั่งให้ยื่นให้)','q3']]},
+  q3:{q:'คนร้ายร่วมกันกี่คน?', a:[['1–2 คน','ching'],['ตั้งแต่ 3 คนขึ้นไป','plon']]}
+};
+const RES={
+  lak:['ลักทรัพย์','มาตรา 334','เอาทรัพย์ของผู้อื่นไปโดยทุจริต'],
+  wing:['วิ่งราวทรัพย์','มาตรา 336','ลักทรัพย์โดยฉกฉวยเอาซึ่งหน้า'],
+  ching:['ชิงทรัพย์','มาตรา 339','ลักทรัพย์โดยใช้กำลังประทุษร้าย หรือขู่ว่าในทันใดนั้นจะใช้กำลัง'],
+  plon:['ปล้นทรัพย์','มาตรา 340','ชิงทรัพย์โดยร่วมกันตั้งแต่สามคนขึ้นไป'],
+  yak:['ยักยอก','มาตรา 352','ครอบครองทรัพย์ของผู้อื่น แล้วเบียดบังเป็นของตนโดยทุจริต'],
+  cho:['ฉ้อโกง','มาตรา 341','หลอกลวงด้วยข้อความเท็จ จนได้ทรัพย์สินไป'],
+  kan:['กรรโชก','มาตรา 337','ขู่เข็ญจนผู้ถูกขู่ยอมให้ประโยชน์ที่เป็นทรัพย์สิน']
+};
+const TRS=[
+  {t:'☕ วางมือถือบนโต๊ะร้านกาแฟ ลุกไปห้องน้ำ มีคน<b>แอบหยิบไป</b>', want:'lak'},
+  {t:'🛵 เดินริมถนน มีคนขี่รถมา<b>กระชากสร้อยคอต่อหน้า</b>แล้วขี่หนีไป', want:'wing'},
+  {t:'🔪 คนร้ายคนเดียว<b>เอามีดจี้</b> สั่งให้ส่งกระเป๋ามาเดี๋ยวนั้น', want:'ching'},
+  {t:'👥 คนร้าย <b>3 คน</b> รุมทำร้าย<b>เพื่อเอากระเป๋า</b>ไป', want:'plon'},
+  {t:'😠 มีคนมาขู่ว่า "<b>พรุ่งนี้ไม่เอาเงินมาให้ จะไปทำร้ายที่บ้าน</b>" · เจ้าของกลัวจึงยอมจ่าย', want:'kan'}
+];
+let trI=0, trAt='q1', trHist=[];
+function trStory(i,btn){ tabOn(btn); trI=i; trAt='q1'; trHist=[]; trDraw(); }
+function trDraw(){
+  $('trS').innerHTML=`<p>${TRS[trI].t}</p>`;
+  $('trPath').innerHTML=trHist.map(h=>ln(h[0],'✔️ '+h[1])).join('');
+  const N=TREE[trAt];
+  if(N){ $('trQ').innerHTML=`<p class="ask">${N.q}</p><div class="chs">${N.a.map((a,j)=>`<button class="tab" onclick="trGo(${j})">${a[0]}</button>`).join('')}</div><div class="info" id="trFb">เลือกให้ตรงกับเรื่อง</div>`; return; }
+  const R=RES[trAt];
+  $('trQ').innerHTML=`<div class="memo">🎯 <b>${R[0]}</b> (${R[1]}) · ${R[2]}</div><div class="center"><button class="btn alt" onclick="trStory(${trI})">🔁 เดินต้นไม้ใหม่</button></div>`;
+  miniConfetti();
+}
+function trGo(j){
+  const N=TREE[trAt], nx=N.a[j][1];
+  if(!trOk(nx)){ $('trFb').innerHTML='❌ ยังไม่ตรงกับเรื่อง · อ่านเรื่องด้านบนอีกครั้ง แล้วเลือกใหม่'; return; }
+  trHist.push([N.q,N.a[j][0]]); trAt=nx; trDraw();
+}
+function trOk(nx){ // ทางที่เลือกพาไปถึงคำตอบของเรื่องได้ไหม
+  const want=TRS[trI].want, reach=k=> k===want || (TREE[k]&&TREE[k].a.some(a=>reach(a[1])));
+  return reach(nx);
+}
+const PQ3=[{p:'☂️', q:'เพื่อนหยิบร่มของคนอื่นไป เพราะนึกว่าเป็นร่มของตัวเอง · ผิดลักทรัพย์ไหม', c:[
+  ['ไม่ผิด · ไม่รู้ว่าเป็นของคนอื่น จึงไม่มีเจตนา',true,'มาตรา 59: ไม่รู้ข้อเท็จจริงที่เป็นส่วนของความผิด จะถือว่าตั้งใจไม่ได้ · แต่รู้ตัวแล้วต้องรีบคืน'],
+  ['ผิด เพราะร่มไม่ใช่ของตัวเอง',false,'ลักทรัพย์ต้อง "โดยทุจริต" และต้องมีเจตนา · คนที่เข้าใจผิดว่าเป็นของตัวเองไม่ได้ตั้งใจเอาของคนอื่น'],
+  ['ผิดวิ่งราวทรัพย์',false,'ไม่ได้ฉกฉวยต่อหน้าใคร และไม่มีเจตนาเอาของคนอื่น']]}];
+const PQ4=[
+  {p:'📦', q:'ฝากมือถือไว้กับเพื่อน เพื่อนเอาไปขายเอง', c:[['ยักยอก',true,'ของอยู่ในมือเพื่อนแล้ว แล้วเบียดบังเป็นของตัว (มาตรา 352)'],['ลักทรัพย์',false,'ไม่ได้ "เอาไป" จากเจ้าของ เพราะเจ้าของฝากไว้เอง'],['ฉ้อโกง',false,'ตอนฝาก ไม่ได้ถูกหลอก']]},
+  {p:'🛍️', q:'ร้านออนไลน์ตั้งใจหลอกตั้งแต่แรก รับเงินค่าเสื้อ แล้วปิดร้านหนี ไม่ส่งของ', c:[['ฉ้อโกง',true,'ผู้ซื้อโอนเงินให้เองเพราะถูกหลอก (มาตรา 341)'],['ลักทรัพย์',false,'ไม่ได้แอบเอาเงินไป ผู้ซื้อโอนให้เอง'],['ยักยอก',false,'เงินมาถึงร้านเพราะการหลอก ไม่ใช่ฝากไว้']]},
+  {p:'😠', q:'"พรุ่งนี้ไม่เอาเงินมาให้ จะไปทำร้ายที่บ้าน" · ผู้ถูกขู่กลัวจึงยอมจ่าย', c:[['กรรโชก',true,'ขู่จนผู้ถูกขู่ยอมให้ทรัพย์สิน (มาตรา 337) · ขู่ว่าจะทำในวันหลัง'],['ชิงทรัพย์',false,'ชิงทรัพย์ต้องขู่ว่าจะทำร้าย "ในทันใดนั้น"'],['ฉ้อโกง',false,'ไม่ได้หลอก แต่ขู่']]}
+];
+const PQ5=[
+  {p:'💵', q:'ซื้อผักที่ตลาด แม่ค้าทอนเงินเกินมา 500 บาทเพราะเข้าใจผิด · เรารู้ แต่เก็บไว้เป็นของตัว', c:[['ยักยอก (โทษกึ่งหนึ่ง)',true,'ผู้อื่นส่งมอบให้โดยสำคัญผิด แล้วเบียดบังไว้ = ยักยอก โทษเพียงกึ่งหนึ่ง (มาตรา 352 วรรคสอง)'],['ไม่ผิด เพราะแม่ค้ายื่นให้เอง',false,'แม่ค้ายื่นให้เพราะเข้าใจผิด ไม่ได้ตั้งใจยกให้'],['ลักทรัพย์',false,'เราไม่ได้ไปเอามา เงินมาอยู่กับเราเอง']]},
+  {p:'👛', q:'ป้าเก็บกระเป๋าเงินที่ตลาดได้ แล้วเก็บไว้ใช้เอง', c:[['ยักยอก (โทษกึ่งหนึ่ง)',true,'ทรัพย์สินหายที่เก็บได้ แล้วเบียดบัง = ยักยอก โทษเพียงกึ่งหนึ่ง (มาตรา 352 วรรคสอง)'],['ลักทรัพย์',false,'ป้าไม่ได้เอาไปจากเจ้าของ · ของหลุดจากมือเจ้าของไปแล้ว'],['ไม่ผิด เพราะเก็บได้',false,'เก็บได้แล้วเบียดบังไว้ ผิดยักยอก']]}
+];
+
+/* ============ บท 2 · อายุกับกฎหมาย ============ */
+const PINS=[
+  [7,'🪪','<b>7 ปีบริบูรณ์</b> · ต้องมีบัตรประจำตัวประชาชน (พ.ร.บ.บัตรฯ ม.5) · ยื่นภายใน 60 วัน (ม.6)'],
+  [15,'📜','<b>15 ปีบริบูรณ์</b> · ทำพินัยกรรมได้ (ป.พ.พ. ม.25)'],
+  [18,'💍','<b>18 ปีบริบูรณ์</b> · หมั้นได้ (ม.1435) · สมรสได้ (ม.1448) · ทั้งสองฝ่ายต้องถึง 18'],
+  [20,'🎓','<b>20 ปีบริบูรณ์</b> · บรรลุนิติภาวะ พ้นจากผู้เยาว์ (ม.19)'],
+  ['เกิน 70','👵','<b>เกิน 70 ปี</b> · ไม่บังคับต้องมีบัตรประชาชน แต่จะขอมีก็ได้ (พ.ร.บ.บัตรฯ ม.5)']
+];
+function agePins(){ $('agePins').innerHTML=PINS.map((p,i)=>`<button class="tab" onclick="agePin(${i},this)">${p[1]} ${p[0]}</button>`).join(''); }
+function agePin(i,btn){ tabOn(btn); $('agePinFb').innerHTML=PINS[i][2]; }
+const BANDS=[
+  ['ไม่เกิน 12 ปี','<b>ไม่ต้องรับโทษ</b> · พนักงานสอบสวนส่งตัวให้เจ้าหน้าที่ตามกฎหมายคุ้มครองเด็ก ดูแลคุ้มครองต่อ (ป.อ. ม.73)'],
+  ['กว่า 12 · ไม่เกิน 15 ปี','<b>ไม่ต้องรับโทษ</b> · แต่ศาลมีอำนาจ เช่น ว่ากล่าวตักเตือน หรือมอบให้พ่อแม่ดูแลภายใต้ข้อกำหนด (ม.74)'],
+  ['กว่า 15 · ต่ำกว่า 18 ปี','ศาลพิจารณาความรู้ผิดชอบ · ถ้าเห็นสมควรลงโทษ ให้<b>ลดมาตราส่วนโทษลงกึ่งหนึ่ง</b> (ม.75) เช่น ลักทรัพย์ไม่เกิน 3 ปี → เหลือไม่เกิน 1 ปี 6 เดือน · ห้ามประหาร/จำคุกตลอดชีวิต (ม.18)'],
+  ['ตั้งแต่ 18 · ไม่เกิน 20 ปี','ถ้าศาลเห็นสมควร <b>ลดโทษลงหนึ่งในสามหรือกึ่งหนึ่ง</b>ก็ได้ (ม.76)'],
+  ['เกิน 20 ปี','ไม่มีการลดโทษเพราะอายุตามมาตรา 73–76']
+];
+function ageBand(){ $('ageBand').innerHTML=BANDS.map((b,i)=>`<button class="tab ab${i}" onclick="ageBandTap(${i},this)">${b[0]}</button>`).join(''); }
+function ageBandTap(i,btn){ tabOn(btn); $('ageBandFb').innerHTML=BANDS[i][1]; }
+const AQ2=[
+  {p:'🧒', q:'เด็กอายุ 11 ปี ขโมยขนมในร้าน', c:[['ไม่ต้องรับโทษ · ส่งให้ดูแลคุ้มครองเด็ก',true,'อายุยังไม่เกิน 12 ปี (มาตรา 73)'],['ลดโทษกึ่งหนึ่ง',false,'ลดกึ่งหนึ่งคือช่วงกว่า 15 แต่ต่ำกว่า 18 ปี'],['รับโทษเหมือนผู้ใหญ่',false,'เด็กอายุไม่เกิน 12 ปี ไม่ต้องรับโทษ']]},
+  {p:'🧑', q:'วัยรุ่นอายุ 16 ปี วิ่งราวทรัพย์ ศาลเห็นสมควรลงโทษ', c:[['ลดมาตราส่วนโทษลงกึ่งหนึ่ง',true,'อายุกว่า 15 แต่ต่ำกว่า 18 ปี (มาตรา 75)'],['ไม่ต้องรับโทษ',false,'ไม่ต้องรับโทษคือช่วงไม่เกิน 15 ปี'],['รับโทษเต็ม',false,'ช่วงอายุนี้ ถ้าลงโทษต้องลดกึ่งหนึ่ง']]},
+  {p:'💍', q:'อายุ 18 ปีบริบูรณ์ จะหมั้นกับแฟนที่อายุ 19', c:[['หมั้นได้ แต่ทั้งคู่ยังเป็นผู้เยาว์ ต้องได้รับความยินยอมจากพ่อแม่',true,'อายุถึง 18 (ม.1435) แต่ยังไม่ถึง 20 จึงเป็นผู้เยาว์ ต้องได้รับความยินยอม (ม.1436)'],['หมั้นได้เลย ไม่ต้องถามใคร',false,'ยังเป็นผู้เยาว์ (ไม่ถึง 20) ต้องได้รับความยินยอม'],['หมั้นไม่ได้จนอายุ 20',false,'หมั้นได้ตั้งแต่ 18 ปีบริบูรณ์']]},
+  {p:'🎉', q:'อายุ 19 ปี สมรสถูกต้องตามกฎหมายแล้ว', c:[['บรรลุนิติภาวะทันที',true,'ป.พ.พ. มาตรา 20'],['ยังเป็นผู้เยาว์จนอายุ 20',false,'การสมรสตามมาตรา 1448 ทำให้บรรลุนิติภาวะ'],['ต้องไปขอศาลก่อน',false,'อายุถึง 18 แล้ว สมรสได้โดยไม่ต้องขอศาล']]}
+];
+const AQ3=[
+  {p:'📚', q:'หนังสือติวเล่มเก่าเขียนว่า "หมั้นได้เมื่ออายุ 17 ปี" · ควรตอบข้อสอบว่าอย่างไร', c:[['18 ปีบริบูรณ์ ทั้งสองฝ่าย',true,'ข้อสอบใช้ข้อมูลปัจจุบัน · ป.พ.พ. มาตรา 1435 ฉบับปัจจุบัน'],['17 ปี ตามหนังสือ',false,'ตัวเลขนี้เป็นข้อมูลก่อนแก้กฎหมายปี 2567'],['20 ปี',false,'20 ปีคืออายุบรรลุนิติภาวะ']]}
+];
+
+/* ============ ตอบผิด → บอกว่าติดขั้นไหน + ปุ่มย้อนไปขั้นนั้น ============ */
+// [ชั้น 0/1/2, ชื่อขั้น, (ทำก่อนเลื่อน), (id ที่จะเลื่อนไป)] · คีย์ = id ของขั้นในหน้าบท
+const STEPS={
+  'gate-s1':[0,'ไม่รู้กฎหมาย ใช้แก้ตัวไม่ได้'], 'gate-s2':[0,'กฎหมาย 2 ฝั่ง: อาญา · แพ่ง'], 'gate-s3':[0,'โทษ 5 สถาน'],
+  'gateL2':[1,'แยกเรื่อง อาญา หรือ แพ่ง'], 'gate-ord':[1,'เรียงโทษ 5 สถาน'],
+  'gateL3':[2,'อ่านประโยคกฎหมาย'], 'gate-num':[2,'"ไม่เกิน" · "ตั้งแต่…ถึง" · "และ" · "หรือ"'],
+  'prop-s1':[0,'ลักทรัพย์ = เอาของคนอื่นไปโดยทุจริต'], 'prop-s2':[0,'ต้นไม้แยกฐาน: เอาไปแบบไหน'], 'prop-s3':[0,'เข้าใจผิดว่าเป็นของตัวเอง'],
+  'propL2':[1,'ของอยู่ในมือใคร · ถูกหลอก · ถูกขู่'], 'prop-rk':[1,'รับของโจร'],
+  'propL3':[2,'บันไดโทษ · ยอมความได้'], 'prop-yk':[2,'เก็บได้ · โอนเงินผิดบัญชี'],
+  'age-s1':[0,'หมุดอายุในชีวิต'], 'age-s2':[0,'เด็กทำผิด ต้องรับโทษไหม'], 'age-s3':[0,'ข้อมูลเก่า ข้อมูลใหม่'],
+  'ageL2':[1,'เรื่องจริงตามอายุ'], 'ageL3':[2,'บรรลุนิติภาวะ 2 ทาง · บัตรประชาชน']
+};
+const PC={}; // แอปนี้ไม่มีลิงก์ฝึกพื้นไป percent
+
+function goStep(s){
+  const [lay,,fn,to]=STEPS[s], scr=CHS[curCh].scr;
+  readLayer(scr,lay); if(fn) fn();
+  setTimeout(()=>{ const el=$(to||s); if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1800); } },500);
+}
+
+let curCh='gate';
+// ท้ายทุกชั้น: ปุ่มลองเล่นด่านของชั้นนั้น · ท้าย 🌿🌳: ปุ่มซ่อนชั้น · ปุ่ม 🎮 เดิมท้ายบท = แผนที่ด่านรวม
+Object.entries(CHS).forEach(([ch,C])=>{
+  const L3=$(C.scr+'L3'); if(!L3) return;
+  const play=i=>`<div class="center lp" style="margin-top:14px"><button class="btn go" data-ch="${ch}" data-i="${i}" onclick="layerPlay('${ch}',${i})"></button></div>`;
+  const hideB=k=>`<button class="more" onclick="closeLayer('${C.scr}L${k}')">⬆️ ซ่อน${LNM[k-1]} ${LIC[k-1]}</button>`;
+  moreBtn(C.scr+'L2').insertAdjacentHTML('beforebegin',play(0));
+  moreBtn(C.scr+'L3').insertAdjacentHTML('beforebegin',play(1)+hideB(2));
+  const menu=L3.querySelector('[onclick^="openGame"]');
+  menu.closest('.center').insertAdjacentHTML('beforebegin',play(2));
+  menu.className='btn alt'; menu.textContent='🗺️ ดูด่านทั้งหมดของบทนี้';
+  L3.insertAdjacentHTML('beforeend',hideB(3));
+});
+function nextCh(ch){ // บทถัดไปตามลำดับหน้าแรก (เรียนเป็นโซ่ ห้ามข้ามขั้น)
+  const K=Object.keys(CHS), i=K.indexOf(ch);
+  return K[i+1]?{scr:CHS[K[i+1]].scr, lab:'ไปบทถัดไป · '+CHS[K[i+1]].i+' '+CHS[K[i+1]].n.replace('🏆 ','')}:null;
+}
+const chLevels = () => LEVELS.filter(L=>L.ch===curCh);
+function openGame(ch){ if(ch) curCh=ch; go('game'); backToGameMenu(); }
+const PER_ROUND=5, PASS=4;
+
+/* ============ level map ============ */
+function isOpen(i){ return i===0 || (save.stars[chLevels()[i-1].id]||0)>0; }
+function renderLevels(){
+  $('gTitle').textContent='🎮 เกมพิชิตด่าน · '+CHS[curCh].n;
+  $('gTabs').innerHTML=Object.entries(CHS).map(([k,C])=>`<button class="tab${k===curCh?' on':''}" onclick="curCh='${k}';renderLevels()">${C.i} ${C.n}</button>`).join('');
+  const box=$('levels'); box.innerHTML='';
+  chLevels().forEach((L,i)=>{
+    const b=document.createElement('button');
+    const open=isOpen(i), st=save.stars[L.id]||0;
+    b.className='lv '+L.cls+(open?'':' locked');
+    b.innerHTML=`<span class="n">${open?L.icon:'🔒'}</span><span><b>${L.name}</b><small>${open?L.sub:'ผ่านด่านก่อนหน้าเพื่อปลดล็อก'}</small></span>
+      <span class="st">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}${(save.boss||{})[L.id]?'<span class="bd" title="พิชิตข้อปราบเซียนครบ">🏆</span>':''}</span>`;
+    if(open) b.onclick=()=>startGame(i);
+    box.appendChild(b);
+  });
+}
+
+/* ============ Quiz Game ============ */
+let game={qs:[],idx:0,score:0,hearts:3,lv:0,mode:'round'};
+// มติเกม 03-11: ผ่านด่าน → 🔥 ท้าทายต่อ (ข้อที่เหลือในคลัง + 👹 ข้อปราบเซียน) หัวใจ 3 ดวงใหม่ · ดาวคิดจาก 5 ข้อแรกเท่านั้น
+const BOSS={};            // ข้อปราบเซียนรายด่าน {id:[...]} — บท 0–1 ยังไม่มี
+let restOf={};            // ข้อที่ยังไม่ได้ถามในรอบล่าสุดของแต่ละด่าน
+let town=null;            // {ch, lv} หัวใจหมดแล้วกลับไปอ่านบท
+
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function qKey(lvId,q){ return lvId+'|'+q.q; }
+const prep = q => ({...q, choices:q.c?shuffle(q.c):[], ans:q.c?q.c[0]:q.k});
+const isLast = () => game.hearts<=0 || game.idx>=game.qs.length-1;
+const heartsTxt = () => '❤️'.repeat(game.hearts)+'🤍'.repeat(3-game.hearts);
+
+function startGame(lv){
+  const L=chLevels()[lv], pool=BANK[L.id];
+  // ข้อที่เคยตอบผิด ได้สิทธิ์ขึ้นก่อน แล้วเติมด้วยข้อสุ่ม
+  const wrong=shuffle(pool.filter(q=>save.wrong.includes(qKey(L.id,q))));
+  const rest=shuffle(pool.filter(q=>!wrong.includes(q)));
+  const picked=[...wrong.slice(0,2), ...rest].slice(0,PER_ROUND);
+  restOf[L.id]=pool.filter(q=>!picked.includes(q));
+  game={lv, mode:'round', qs:shuffle(picked).map(prep), idx:0, score:0, hearts:3};
+  showPlay();
+}
+const OTHER_N=3; // ท้าทายต่อ: ดึงข้อจากชั้นอื่นของบทเดียวกัน ชั้นละไม่เกิน 3 ข้อ
+function challengePool(lv){ // ข้อที่เหลือของด่านนี้ → ข้อชั้นอื่น (layer/src บอกที่มา) → 👹 ท้ายสุด
+  const Ls=chLevels(), L=Ls[lv];
+  const rest=restOf[L.id]||BANK[L.id];   // reload แล้วไม่รู้ว่ารอบก่อนถามข้อไหน → ใช้ทั้งคลัง
+  const other=Ls.flatMap((O,i)=>i===lv?[]:shuffle(BANK[O.id]).slice(0,OTHER_N).map(q=>({...q, layer:i, src:O.id})));
+  const boss=(BOSS[L.id]||[]).map(q=>({...q, boss:true}));
+  return [...shuffle(rest), ...shuffle(other), ...shuffle(boss)];
+}
+function startChallenge(lv){
+  game={lv, mode:'challenge', qs:challengePool(lv).map(prep), idx:0, score:0, hearts:3};
+  town=null; $('ch-retry').style.display='none';
+  showPlay();
+}
+function goTown(){ // 🏘️ กลับเมืองเตรียมเสบียง
+  town={ch:curCh, lv:game.lv};
+  go(CHS[curCh].scr);
+}
+function retryChallenge(){ // 🔥 ท้าทายใหม่ หลังอ่านบท
+  if(!town) return;
+  const t=town; curCh=t.ch; go('game'); startChallenge(t.lv);
+}
+function showPlay(){
+  $('game-menu').style.display='none';
+  $('game-end').style.display='none';
+  $('game-play').style.display='block';
+  showQ();
+}
+function showQ(){
+  const q=game.qs[game.idx], N=game.qs.length;
+  $('q-count').textContent=game.mode==='round'?`ข้อ ${game.idx+1} / ${N}`:(q.boss?'👹 ปราบเซียน':'🔥 ท้าทาย'+(q.layer!=null?` · ข้อจาก${LNM[q.layer]} ${LIC[q.layer]}`:''))+` ${game.idx+1} / ${N}`;
+  $('q-score').textContent=game.score;
+  $('q-hearts').textContent=heartsTxt();
+  $('q-prog').style.width=(game.idx/N*100)+'%';
+  $('q-pic').textContent=q.p||'';
+  $('q-text').textContent=q.q;
+  $('q-fb').textContent=''; $('q-why').style.display='none'; $('q-next').style.display='none';
+  const box=$('q-choices'); box.innerHTML='';
+  $('q-pic').onclick=null;
+  q.choices.forEach((val,i)=>{
+    const b=document.createElement('button');
+    b.className='choice'; b.textContent=['ก','ข','ค','ง'][i]+'. '+val;
+    b.onclick=()=>answer(b,val,q);
+    box.appendChild(b);
+  });
+}
+function afterAnswer(q,ok){
+  persist();
+  // ตอบผิด → บอกว่าติดขั้นไหนในบท + ปุ่มพากลับไปขั้นนั้น (กลไกสำหรับคนเรียนรู้ช้า)
+  const st=!ok&&q.s&&STEPS[q.s];
+  $('q-why').innerHTML='💡 '+q.w+(st?`<div class="stuck">📍 ข้อนี้ใช้ขั้น <b>${st[1]}</b> (${LNM[st[0]]} ${LIC[st[0]]})<br><button class="tab on" style="margin-top:6px" onclick="goStep('${q.s}')">↩️ กลับไปดูขั้นนี้</button></div>`:'')
+    +(!ok&&q.pc&&PC[q.pc]?`<a class="bridge" href="../percent/#${q.pc}" target="_blank" rel="noopener">🔗 ฝึกพื้นเพิ่ม · แอป <b>สนุกกับเปอร์เซ็นต์</b> บท "${PC[q.pc]}" ↗</a>`:'');
+  $('q-why').style.display='block';
+  $('q-next').textContent=isLast()?'ดูผล 🏁':'ข้อต่อไป ➡️';
+  $('q-next').style.display='inline-block';
+}
+function answer(btn,val,q){
+  const btns=[...document.querySelectorAll('#q-choices .choice')];
+  btns.forEach(b=>b.disabled=true);
+  const key=qKey(q.src||chLevels()[game.lv].id,q);
+  if(val===q.ans){
+    btn.classList.add('correct');
+    game.score++; $('q-score').textContent=game.score;
+    $('q-fb').textContent='✅ ถูกต้อง เก่งมาก!'; $('q-fb').style.color='#39c14a';
+    save.wrong=save.wrong.filter(k=>k!==key);
+    miniConfetti();
+  } else {
+    btn.classList.add('wrong');
+    game.hearts--; $('q-hearts').textContent=heartsTxt();
+    $('q-fb').textContent='❌ ยังไม่ถูกนะ'; $('q-fb').style.color='#ff5f5f';
+    btns[q.choices.indexOf(q.ans)].classList.add('correct');
+    if(!q.boss && !save.wrong.includes(key)) save.wrong.push(key);
+  }
+  afterAnswer(q,val===q.ans);
+}
+function nextQ(){
+  game.idx++;
+  if(game.hearts<=0 || game.idx>=game.qs.length) endGame();
+  else showQ();
+}
+function endBtns(html){
+  $('e-btns').innerHTML=html+`<button class="btn go" onclick="backToGameMenu()">🗺️ แผนที่ด่าน</button>`;
+}
+function endGame(){
+  $('game-play').style.display='none';
+  $('game-end').style.display='block';
+  if(game.mode==='challenge') return endChallenge();
+  const s=game.score, L=chLevels()[game.lv];
+  const pass = s>=PASS && game.hearts>0;
+  const starN = !pass?0 : s>=5?3 : 2;
+  $('e-stars').textContent = '⭐'.repeat(starN)+'☆'.repeat(3-starN);
+  const next=chLevels()[game.lv+1];
+  $('e-msg').textContent = !pass?'เกือบแล้ว ลองใหม่นะ 💪' : starN===3?'สุดยอด! ไม่พลาดเลย 🏆':'ผ่านด่านแล้ว! 😄';
+  const lv=game.lv, scr=CHS[curCh].scr, nx=nextCh(curCh);
+  $('e-detail').textContent = `ทำถูก ${s} จาก ${PER_ROUND} ข้อ`+(pass&&next&&!(save.stars[L.id]>0)?` · ปลดล็อก ${next.name} 🔓`:'')+(!pass?` · ต้องถูก ${PASS} ข้อขึ้นไป · ลองอ่าน${LNM[lv]}อีกรอบ แล้วกลับมาเล่นใหม่`:'');
+  if(starN>(save.stars[L.id]||0)){ save.stars[L.id]=starN; persist(); showStars(); }
+  const left=challengePool(lv).length;
+  // ผ่าน → ชวนอ่านกว้างก่อน (บทถัดไป) หรือลงลึกชั้นถัดไป · ไม่ผ่าน → พากลับไปชั้นที่เพิ่งเล่น
+  endBtns(pass
+    ? (nx?`<button class="btn go" onclick="go('${nx.scr}')">▶ ${nx.lab}</button>`:'')
+      +(lv<2?`<button class="btn alt" onclick="readLayer('${scr}',${lv+1})">${LIC[lv+1]} อ่าน${LNM[lv+1]}ต่อ</button>`
+           :`<button class="btn alt" onclick="go('${scr}')">📖 ทบทวนบทเรียน</button>`)
+      +(left?`<button class="btn fire" onclick="startChallenge(${lv})">🔥 ท้าทายต่อ (อีก ${left} ข้อ)</button>`:'')
+    : `<button class="btn alt" onclick="readLayer('${scr}',${lv})">📖 กลับไปอ่าน${LNM[lv]} ${LIC[lv]}</button>`);
+  if(pass) bigConfetti();
+}
+function endChallenge(){
+  const L=chLevels()[game.lv], N=game.qs.length, alive=game.hearts>0;
+  const hasBoss=game.qs.some(q=>q.boss);
+  if(!alive){
+    $('e-stars').textContent='💔';
+    $('e-msg').textContent='หัวใจหมดแล้ว ไปเตรียมเสบียงก่อนนะ 🎒';
+    $('e-detail').textContent=`ตอบไป ${game.idx} จาก ${N} ข้อ (ถูก ${game.score}) · กลับไปอ่านบท แล้วกด 🔥 ท้าทายใหม่ ได้หัวใจ 3 ดวงเต็ม`;
+    endBtns(`<button class="btn alt" onclick="goTown()">🏘️ กลับเมืองเตรียมเสบียง</button>`);
+    return;
+  }
+  if(hasBoss){ save.boss=save.boss||{}; save.boss[L.id]=1; persist(); }
+  $('e-stars').textContent=hasBoss?'🏆':'🔥';
+  $('e-msg').textContent=hasBoss?'พิชิตข้อปราบเซียนครบ! ได้ตรา 🏆':'ฝ่าครบทุกข้อในคลังแล้ว! 🔥';
+  $('e-detail').textContent=`ตอบถูก ${game.score} จาก ${N} ข้อ · หัวใจเหลือ ${game.hearts}`;
+  endBtns(`<button class="btn alt" onclick="go(CHS[curCh].scr)">📖 ทบทวนบทเรียน</button>`);
+  bigConfetti();
+}
+function backToGameMenu(){
+  $('game-end').style.display='none';
+  $('game-play').style.display='none';
+  $('game-menu').style.display='block';
+  town=null; $('ch-retry').style.display='none';
+  renderLevels();
+}
+
+/* ============ confetti ============ */
+function spawnConfetti(count){
+  const colors=['#ff6ec7','#a06bff','#4ea8ff','#37e0d8','#5bd75b','#ffd34e','#ff9d42'];
+  for(let i=0;i<count;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.animation=`fall ${1.5+Math.random()*1.5}s ease-in forwards`;
+    c.style.animationDelay=(Math.random()*0.3)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3200);
+  }
+}
+function miniConfetti(){ spawnConfetti(14); }
+function bigConfetti(){ spawnConfetti(60); }
+
+
+/* ============ เริ่มต้นตัวช่วยในบท ============ */
+qsMount('gq1',GQ1); qsMount('gq2',GQ2); ordDraw(); parts334();
+trDraw(); qsMount('pq3',PQ3); qsMount('pq4',PQ4); qsMount('pq5',PQ5);
+agePins(); ageBand(); qsMount('aq2',AQ2); qsMount('aq3',AQ3);
+/* ลิงก์ตรงเข้าบท: index.html#bal (ใช้ลิงก์ข้ามแอป เช่นจาก percent) */
+// ลิงก์ตรง: #ชื่อบท (เช่น #fr) หรือ #ขั้นในบท จาก STEPS (เช่น #fr-p3 · #c0L3) — ใช้กับลิงก์ข้ามแอป
+{ const h=decodeURIComponent(location.hash.slice(1)), e=h&&$(h);
+  if(e&&e.classList.contains('screen')) go(h);
+  else if(STEPS[h]){ const t=$(STEPS[h][3]||h), sc=t&&t.closest('.screen'), k=sc&&Object.keys(CHS).find(k=>CHS[k].scr===sc.id); if(k){ curCh=k; goStep(h); } } }
+</script>
+</html>
